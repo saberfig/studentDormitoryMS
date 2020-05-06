@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AppIndex from '../components/home/AppIndex'
-import Login from '../components/Login'
-import AppFailed from "../components/home/AppFailed";
+import AppIndex from '../views/Index'
+import Login from '../views/Login'
+import AppFailed from "../views/AppFailed";
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      name: 'Default',
+      component: Login
+    },
     {
       path: '/login',
       name: 'Login',
@@ -23,5 +28,6 @@ export default new Router({
       name: 'AppFailed',
       component: AppFailed
     }
-  ]
+  ],
+  mode:'history'
 })

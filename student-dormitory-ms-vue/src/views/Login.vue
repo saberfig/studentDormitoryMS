@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="temp">
     用户名:<input type="text" v-model="loginForm.username" placeholder="请输入用户名"/>
     <br><br>
     密码： <input type="password" v-model="loginForm.password" placeholder="请输入密码"/>
@@ -45,5 +45,7 @@
 </script>
 
 <style scoped>
-
+.temp{
+  margin-top: 15%;
+}
 </style>
