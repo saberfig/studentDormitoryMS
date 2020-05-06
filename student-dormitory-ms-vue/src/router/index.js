@@ -4,6 +4,7 @@ import AppIndex from '../views/Index'
 import Login from '../views/Login'
 import AppFailed from "../views/AppFailed";
 
+
 Vue.use(Router)
 
 export default new Router({
