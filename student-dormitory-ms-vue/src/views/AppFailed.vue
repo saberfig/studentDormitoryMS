@@ -16,5 +16,4 @@
   .temp{
     margin-top: 15%;
   }
-
 </style>

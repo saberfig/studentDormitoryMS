@@ -6,8 +6,6 @@ import com.dorm.demo.dao.StudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class StudentService {
     @Autowired
@@ -17,18 +15,18 @@ public class StudentService {
         return studentDAO.findById(id);
     }
 
-    public Student get(String id,String psw){
+    public Student get(String id, String psw){
         System.out.println(id);
         System.out.println(psw);
-        return studentDAO.findByIdAndPsw("liu","liu");
+        return studentDAO.findByIdAndPsw(id,psw);
     }
 
     public boolean isExit(String id){
-        Student student=getById(id);
-        return null!=student;
+        Student student1 =getById(id);
+        return null!= student1;
     }
 
-    public void add(Student student){
-        studentDAO.save(student);
+    public void add(Student student1){
+        studentDAO.save(student1);
     }
 }

@@ -5,15 +5,13 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "student", schema = "programdb", catalog = "")
-public class Student {
+@Table(name = "dorm_manager", schema = "programdb", catalog = "")
+public class DormManager {
     private String id;
-    private String name;
-    private String sex;
-    private String major;
-    private String tel;
-    private Integer yearIn;
     private Date birth;
+    private String sex;
+    private String name;
+    private String tel;
     private String psw;
 
     @Id
@@ -27,13 +25,13 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 20)
-    public String getName() {
-        return name;
+    @Column(name = "birth", nullable = true)
+    public Date getBirth() {
+        return birth;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
     @Basic
@@ -47,13 +45,13 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "major", nullable = true, length = 40)
-    public String getMajor() {
-        return major;
+    @Column(name = "name", nullable = true, length = 20)
+    public String getName() {
+        return name;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
@@ -64,26 +62,6 @@ public class Student {
 
     public void setTel(String tel) {
         this.tel = tel;
-    }
-
-    @Basic
-    @Column(name = "year_in", nullable = true)
-    public Integer getYearIn() {
-        return yearIn;
-    }
-
-    public void setYearIn(Integer yearIn) {
-        this.yearIn = yearIn;
-    }
-
-    @Basic
-    @Column(name = "birth", nullable = true)
-    public Date getBirth() {
-        return birth;
-    }
-
-    public void setBirth(Date birth) {
-        this.birth = birth;
     }
 
     @Basic
@@ -100,19 +78,17 @@ public class Student {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Student that = (Student) o;
+        DormManager that = (DormManager) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(sex, that.sex) &&
-                Objects.equals(major, that.major) &&
-                Objects.equals(tel, that.tel) &&
-                Objects.equals(yearIn, that.yearIn) &&
                 Objects.equals(birth, that.birth) &&
+                Objects.equals(sex, that.sex) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(tel, that.tel) &&
                 Objects.equals(psw, that.psw);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, sex, major, tel, yearIn, birth, psw);
+        return Objects.hash(id, birth, sex, name, tel, psw);
     }
 }

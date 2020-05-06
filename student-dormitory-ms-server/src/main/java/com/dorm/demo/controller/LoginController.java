@@ -3,14 +3,11 @@ package com.dorm.demo.controller;
 import com.dorm.demo.result.Result;
 import com.dorm.demo.pojo.Student;
 import com.dorm.demo.service.StudentService;
-import com.dorm.demo.dao.StudentDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
-
-import java.util.Objects;
 
 @Controller
 public class LoginController {
@@ -25,8 +22,8 @@ public class LoginController {
         String id = requestStudent.getId();
         id = HtmlUtils.htmlEscape(id);
 
-        Student student=studentService.get(id,requestStudent.getPsw());
-        if(null==student){
+        Student student =studentService.get(id, requestStudent.getPsw());
+        if(null== student){
             return new Result(400);
         }else{
             return new Result(200);
