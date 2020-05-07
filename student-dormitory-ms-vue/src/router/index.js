@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import AppIndex from '../views/Index'
 import Login from '../views/Login'
 import AppFailed from "../views/AppFailed";
+import Mylogin from "../views/Mylogin"
 
 
 Vue.use(Router)
@@ -18,6 +19,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/mylogin',
+      name: 'Mylogin',
+      component: Mylogin
     },
     {
       path: '/index',
