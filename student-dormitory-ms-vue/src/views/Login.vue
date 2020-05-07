@@ -32,7 +32,7 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
-            this.$router.replace({ path: "/index" });
+            this.$router.replace({ path: "/nav_manager/index" });
           }
           if (successResponse.data.code === 400) {
             this.$router.replace({ path: "/failed" });
@@ -46,6 +46,14 @@ export default {
 
 <style scoped>
 .temp {
+
+  width:100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  background-attachment:fixed;
   margin-top: 15%;
+
 }
 </style>

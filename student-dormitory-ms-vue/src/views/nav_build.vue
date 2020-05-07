@@ -18,7 +18,7 @@
 					</a>
 					<ul class="templatemo-submenu">
 						<li><router-link to="fangjian_build">房间信息</router-link></li>
-						<li><router-link to="/chuangwei_build">学生信息</router-link></li>
+						<li><router-link to="chuangwei_build">学生信息</router-link></li>
 					</ul>
 				</li>
 				<li class="sub" >
@@ -26,10 +26,10 @@
 						<i class="iconfont icon-xue"></i> 学生信息管理 <div class="pull-right"><span class="caret"></span></div>
 					</a>
 					<ul class="templatemo-submenu">
-						<li><router-link to="/jiluweiji">记录学生违纪信息</router-link></li>
+						<li><router-link to="jiluweiji">记录学生违纪信息</router-link></li>
 					</ul>
 					<ul class="templatemo-submenu">
-						<li><router-link to="/fangkexinxi">访客信息登记</router-link></li>
+						<li><router-link to="fangkexinxi">访客信息登记</router-link></li>
 					</ul>
 				</li>
 				<li class="sub" >
@@ -37,10 +37,10 @@
 						<i class="iconfont icon-xitongrizhi"></i> 日志信息 <div class="pull-right"><span class="caret"></span></div>
 					</a>
 					<ul class="templatemo-submenu">
-						<li><router-link to="/xiaotz">校方通知日志</router-link></li>
+						<li><router-link to="xiaotz">校方通知日志</router-link></li>
 					</ul>
 					<ul class="templatemo-submenu">
-						<li><router-link to="/xuetz">通知学生日志</router-link></li>
+						<li><router-link to="xuetz">通知学生日志</router-link></li>
 					</ul>
 				</li>
 				<li>
@@ -76,7 +76,18 @@
 
 <script>
   export default {
-    name: 'nav_build'
+    name: 'nav_build',
+    mounted:function(){
+      $('.templatemo-sidebar-menu li.sub a').click(function(){
+        if($(this).parent().hasClass('open')) {
+          console.log("aaaaa");
+          $(this).parent().removeClass('open');
+        } else {
+          console.log("bbbb");
+          $(this).parent().addClass('open');
+        }
+      });
+    }
   }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-    <div>this is student page no more</div>
+
 </template>
 
 <script>
     export default {
-        name: "StudentPage"
+        name: "student_in"
     }
 </script>
 

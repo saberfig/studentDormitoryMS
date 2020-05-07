@@ -15,7 +15,7 @@
             <i>XXX</i>
           </li>
           <li>
-            <router-link to="/Index">
+            <router-link to="index">
               <i class="iconfont icon-zhuye"></i>主页
             </router-link>
           </li>
@@ -28,13 +28,13 @@
             </a>
             <ul class="templatemo-submenu">
               <li>
-                <router-link to="/xiaoqu">校区</router-link>
+                <router-link to="xiaoqu">校区</router-link>
               </li>
               <li>
-                <router-link to="/sushe">宿舍</router-link>
+                <router-link to="sushe">宿舍</router-link>
               </li>
               <li>
-                <router-link to="/fangjian">房间</router-link>
+                <router-link to="fangjian">房间</router-link>
               </li>
             </ul>
           </li>
@@ -47,9 +47,33 @@
             </a>
             <ul class="templatemo-submenu">
               <li>
-                <router-link to="/resetpsw">重置密码</router-link>
+                <router-link to="resetpsw">重置密码</router-link>
               </li>
             </ul>
+          </li>
+          <li class="sub">
+            <a href="javascript:;">
+              <i class="iconfont icon-ruzhu"></i>学生入住管理
+              <div class="pull-right">
+                <span class="caret"></span>
+              </div>
+            </a>
+            <ul class="templatemo-submenu">
+              <li>
+                <router-link to="dorm_exchange">宿舍调整</router-link>
+              </li>
+              <li>
+                <router-link to="student_in">学生退宿</router-link>
+              </li>
+              <li>
+                <router-link to="student_out">学生入住</router-link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="iconfont icon-xitongrizhi"></i>系统日志
+            </a>
           </li>
           <li>
             <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
@@ -111,8 +135,27 @@
 
 <script>
   export default {
-    name: 'nav_manager'
+    name: 'nav_manager',
+
+    methods:{
+
+    },
+
+    mounted:function(){
+      $('.templatemo-sidebar-menu li.sub a').click(function(){
+        if($(this).parent().hasClass('open')) {
+          console.log("aaaaa");
+          $(this).parent().removeClass('open');
+        } else {
+          console.log("bbbb");
+          $(this).parent().addClass('open');
+        }
+      });
+    }
   }
+
+
+
 </script>
 
 <style scoped>
