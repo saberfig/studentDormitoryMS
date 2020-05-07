@@ -4,7 +4,7 @@ import AppIndex from '../views/Index'
 import Login from '../views/Login'
 import AppFailed from "../views/AppFailed";
 import Mylogin from "../views/Mylogin"
-
+import StudentPage from "../views/StudentPage";
 
 Vue.use(Router)
 
@@ -34,6 +34,11 @@ export default new Router({
       path: '/failed',
       name: 'AppFailed',
       component: AppFailed
+    },
+    {
+      path: '/studentpage',
+      name: 'StudentPage',
+      component: StudentPage
     }
   ],
   mode:'history'
