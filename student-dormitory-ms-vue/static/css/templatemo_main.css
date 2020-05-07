@@ -170,7 +170,7 @@ td{
 .tableTop input{
 	width: 120px;
 	border: #ccc solid 1px;
-	border-radius: 4px;	
+	border-radius: 4px;
 }
 .templatemo-sidebar .templatemo-sidebar-menu>li>a>i {
 	font-size: 16px;
@@ -198,7 +198,7 @@ td{
 select{
 	background: transparent;
     border: #ccc solid 1px;
-	border-radius: 6px;	
+	border-radius: 6px;
     padding-left: 10px;
     width: 150px;
     height: 100%;
@@ -206,7 +206,7 @@ select{
 }
 .modal-body label input{
 	border: #ccc solid 1px;
-	border-radius: 4px;	
+	border-radius: 4px;
 }
 .opreating{
 	padding-inline-start: 0;
@@ -228,11 +228,132 @@ select{
 }
 .resetpsw input{
 	border: #ccc solid 1px;
-	border-radius: 4px;	
+	border-radius: 4px;
 }
 .resetpsw button{
 	margin: 20px 150px;
 }
+
+.templatemo-table-fj{
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+}
+.templatemo-table-fj td, .templatemo-table-fj th
+{
+  border: 1px solid #cad9ea;
+  color: #666;
+  height: 30px;
+}
+.templatemo-table-fj thead th
+{
+  background-color: #CCE8EB;
+  width: 100px;
+  text-align: center;
+}
+.templatemo-table-fj tr:nth-child(odd)
+{
+  background: #fff;
+}
+.templatemo-table-fj tr:nth-child(even)
+{
+  background: #F5FAFA;
+}
+
+.templatemo-form-weiji
+{
+  margin:0px;
+  text-align: center;
+  background-color: #CCE8EB;
+}
+
+.templatemo-input-weiji
+{
+  width: 180px;border:1px solid #808080;
+}
+
+.templatemo-textarea-weiji
+{
+  width: 250px;height: 150px;
+}
+
+* {
+  font-size:14px;
+  margin:0px;
+  padding:0px;
+  font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica;
+}
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*
+*/
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/*内容总区域的长度，自行控制*/
+
+.timeline-block {
+  width:100%;
+  margin:0 auto;
+}
+/*title区域*/
+.timeline-title-info {
+  display:-webkit-box;
+  display:-moz-box;
+}
+/*公告文字*/
+.timeline-title {
+  color:#222222;
+  margin-right:16px;
+}
+/*日期*/
+.timeline-time {
+  -webkit-box-flex:1;
+  box-flex:1;
+}
+/*内容区域*/
+.timeline-info {
+  width:100%;
+}
+/*内容文字*/
+.timeline-content {
+  border-left:1px solid #222222;
+  margin-left:10px;
+  padding-left:34px;
+  margin-top:10px;
+  margin-bottom:8px;
+  color:#999999;
+  font-size:12px;
+  position:relative;
+  min-height:66px;
+}
+.timeline-content::before {
+  content:'';
+  display:block;
+  position:absolute;
+  left:-3px;
+  top:-3px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#222222;
+}
+.timeline-content::after {
+  content:'';
+  display:block;
+  position:absolute;
+  left:-3px;
+  bottom:0px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#222222;
+}
+
 @media screen and (min-width: 992px) {
 	.templatemo-sidebar {
 		width: 235px;
