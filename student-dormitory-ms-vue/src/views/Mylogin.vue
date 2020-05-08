@@ -33,7 +33,7 @@
 <script>
 
   export default {
-    name: 'Myogin',
+    name: 'Mylogin',
     data () {
       return {
         loginForm: {

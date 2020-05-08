@@ -1,6 +1,6 @@
 <template>
   <div>
-       <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar navbar-inverse" role="navigation">
       <div class="navbar-header">
         <div class="logo">
           <h1>学生宿舍管理系统</h1>
@@ -60,13 +60,13 @@
             </a>
             <ul class="templatemo-submenu">
               <li>
-                <router-link to="dorm_exchange">宿舍调整</router-link>
+                <router-link to="dorm_exchange">宿舍对调</router-link>
               </li>
               <li>
-                <router-link to="student_in">学生退宿</router-link>
+                <router-link to="student_in">学生入住</router-link>
               </li>
               <li>
-                <router-link to="student_out">学生入住</router-link>
+                <router-link to="student_out">学生退宿</router-link>
               </li>
             </ul>
           </li>
