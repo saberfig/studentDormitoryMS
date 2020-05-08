@@ -1,29 +1,16 @@
 <template>
   <div>
-    <section>
+    <section v-for="item in noticekey" :key="item.id">
       <!--公告区域1-->
       <div class="timeline-block">
         <!--标题-->
         <div class="timeline-title-info">
-          <div class="timeline-title">停水公告</div>
-          <div class="timeline-time">2020-05-02</div>
+          <div class="timeline-title">公告</div>
+          <div class="timeline-time">{{$moment(item.time).format('YYYY-MM-DD HH:MM')}}</div>
         </div>
         <!--内容-->
         <div class="timeline-info">
-          <div class="timeline-content">学九，学十由于管道施工，将于今日中午12：00开始停水，恢复时间另行通知</div>
-        </div>
-      </div>
-      <!--end 公告区域-->
-      <!--公告区域2-->
-      <div class="timeline-block">
-        <!--标题-->
-        <div class="timeline-title-info">
-          <div class="timeline-title">停电公告</div>
-          <div class="timeline-time">2020-05-03</div>
-        </div>
-        <!--内容-->
-        <div class="timeline-info">
-          <div class="timeline-content">学二由于线路施工，将于今日中午12：00开始停水，恢复时间另行通知，请各位宿管尽快通知学生</div>
+          <div class="timeline-content">{{item.description}}</div>
         </div>
       </div>
       <!--end 公告区域-->
@@ -33,7 +20,32 @@
 
 <script>
 export default {
-  name: "xiaotz"
+  name: "xiaotz",
+  data() {
+    return{
+      noticekey:[
+        {
+          id:'',
+          time:'',
+          description:''
+        }
+      ]
+    }
+  },
+  mounted: function () {
+    this.loadnoticekey()
+  },
+
+  methods: {
+    loadnoticekey () {
+      var _this = this
+      this.$axios.get('/nav_build/xiaotz').then(resp => {
+      if (resp && resp.status === 200) {
+        _this.noticekey = resp.data
+      }
+    })
+  }
+},
 };
 </script>
 
