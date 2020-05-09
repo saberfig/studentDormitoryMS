@@ -6,6 +6,8 @@ import router from './router'
 import moment from 'moment';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import global from './global/common.vue'
+
 
 //设置反向代理，前端请求默认发送到http://localhost:8443/api
 var axios = require('axios')
@@ -20,6 +22,7 @@ Vue.use(ElementUI);
 
 
 Vue.prototype.$moment = moment
+Vue.prototype.COMMON = global
 
 new Vue({
   el: '#app',

@@ -12,7 +12,7 @@
         <ul class="templatemo-sidebar-menu">
           <li class="welcomeBack">
             欢迎回来
-            <i>XXX</i>
+            <i>{{id}}</i>
           </li>
           <li>
             <router-link to="index">
@@ -104,7 +104,7 @@
               <h4 class="modal-title" id="myModalLabel">确认退出？</h4>
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn btn-primary">是</a>
+              <a href="/SuperManagerLogin" class="btn btn-primary" @click="clearUser">是</a>
               <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
             </div>
           </div>
@@ -136,9 +136,15 @@
 <script>
   export default {
     name: 'nav_manager',
-
+    data () {
+      return {
+        id:this.COMMON.id,
+      }
+    },
     methods:{
-
+      clearUser(){
+        this.COMMON.clearUser()
+      }
     },
 
     mounted:function(){

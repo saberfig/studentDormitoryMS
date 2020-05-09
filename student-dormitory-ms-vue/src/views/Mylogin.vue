@@ -10,16 +10,16 @@
         <div class="font">用户名</div>
       </div>
       <div class="row">
-        <el-input v-model="username" placeholder="请输入用户名"></el-input>
+        <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
       </div>
       <div class="row">
         <div class="font">密码</div>
       </div>
       <div class="row">
-        <el-input v-model="password" placeholder="请输入密码"></el-input>
+        <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
       </div>
       <div class="row">
-        <el-button @click="changeword">登录</el-button>
+        <el-button @click="login">登录</el-button>
       </div>
       <div class="row">
         <div class="font">忘记密码？</div>
