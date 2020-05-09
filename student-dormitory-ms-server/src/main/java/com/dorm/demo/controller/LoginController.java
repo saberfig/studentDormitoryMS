@@ -1,7 +1,7 @@
 package com.dorm.demo.controller;
 
-import com.dorm.demo.result.Result;
 import com.dorm.demo.pojo.Student;
+import com.dorm.demo.result.Result;
 import com.dorm.demo.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,6 +10,7 @@ public class NoticeKey {
     private int id;
     private Timestamp time;
     private String description;
+    private String superManagerId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,6 +42,16 @@ public class NoticeKey {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "super_manager_id", nullable = false, length = 10)
+    public String getSuperManagerId() {
+        return superManagerId;
+    }
+
+    public void setSuperManagerId(String superManagerId) {
+        this.superManagerId = superManagerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,11 +59,12 @@ public class NoticeKey {
         NoticeKey that = (NoticeKey) o;
         return id == that.id &&
                 Objects.equals(time, that.time) &&
-                Objects.equals(description, that.description);
+                Objects.equals(description, that.description) &&
+                Objects.equals(superManagerId, that.superManagerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, time, description);
+        return Objects.hash(id, time, description, superManagerId);
     }
 }

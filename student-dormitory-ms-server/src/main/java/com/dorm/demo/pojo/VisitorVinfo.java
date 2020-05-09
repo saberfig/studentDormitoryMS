@@ -13,6 +13,7 @@ public class VisitorVinfo {
     private String vname;
     private String videntity;
     private String reason;
+    private String studentId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -74,6 +75,16 @@ public class VisitorVinfo {
         this.reason = reason;
     }
 
+    @Basic
+    @Column(name = "student_id", nullable = false, length = 10)
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,11 +95,12 @@ public class VisitorVinfo {
                 Objects.equals(timeOut, that.timeOut) &&
                 Objects.equals(vname, that.vname) &&
                 Objects.equals(videntity, that.videntity) &&
-                Objects.equals(reason, that.reason);
+                Objects.equals(reason, that.reason) &&
+                Objects.equals(studentId, that.studentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, timeIn, timeOut, vname, videntity, reason);
+        return Objects.hash(id, timeIn, timeOut, vname, videntity, reason, studentId);
     }
 }

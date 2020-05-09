@@ -1,6 +1,6 @@
 package com.dorm.demo.dao;
 
-import com.dorm.demo.pojo.Student;//引入student实体类
+import com.dorm.demo.pojo.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

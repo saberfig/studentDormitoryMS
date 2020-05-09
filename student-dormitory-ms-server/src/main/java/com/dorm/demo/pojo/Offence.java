@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Offence {
     private int id;
     private String description;
+    private String studentId;
     private Timestamp time;
 
     @Id
@@ -32,6 +33,16 @@ public class Offence {
     }
 
     @Basic
+    @Column(name = "student_id", nullable = false, length = 10)
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    @Basic
     @Column(name = "time", nullable = true)
     public Timestamp getTime() {
         return time;
@@ -48,11 +59,12 @@ public class Offence {
         Offence that = (Offence) o;
         return id == that.id &&
                 Objects.equals(description, that.description) &&
+                Objects.equals(studentId, that.studentId) &&
                 Objects.equals(time, that.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, time);
+        return Objects.hash(id, description, studentId, time);
     }
 }

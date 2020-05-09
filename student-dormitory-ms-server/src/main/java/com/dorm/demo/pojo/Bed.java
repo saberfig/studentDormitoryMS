@@ -67,12 +67,12 @@ public class Bed {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bed bedEntity = (Bed) o;
-        return Objects.equals(id, bedEntity.id) &&
-                Objects.equals(roomId, bedEntity.roomId) &&
-                Objects.equals(roomDormId, bedEntity.roomDormId) &&
-                Objects.equals(roomDormCampusId, bedEntity.roomDormCampusId) &&
-                Objects.equals(studentId, bedEntity.studentId);
+        Bed bed = (Bed) o;
+        return Objects.equals(id, bed.id) &&
+                Objects.equals(roomId, bed.roomId) &&
+                Objects.equals(roomDormId, bed.roomDormId) &&
+                Objects.equals(roomDormCampusId, bed.roomDormCampusId) &&
+                Objects.equals(studentId, bed.studentId);
     }
 
     @Override

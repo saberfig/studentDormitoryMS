@@ -10,6 +10,7 @@ public class NoticeNorm {
     private int id;
     private Timestamp time;
     private String description;
+    private String dormManagerId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,6 +42,16 @@ public class NoticeNorm {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "dorm_manager_id", nullable = false, length = 10)
+    public String getDormManagerId() {
+        return dormManagerId;
+    }
+
+    public void setDormManagerId(String dormManagerId) {
+        this.dormManagerId = dormManagerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,11 +59,12 @@ public class NoticeNorm {
         NoticeNorm that = (NoticeNorm) o;
         return id == that.id &&
                 Objects.equals(time, that.time) &&
-                Objects.equals(description, that.description);
+                Objects.equals(description, that.description) &&
+                Objects.equals(dormManagerId, that.dormManagerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, time, description);
+        return Objects.hash(id, time, description, dormManagerId);
     }
 }

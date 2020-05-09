@@ -10,6 +10,8 @@ public class StudentBorrowGoods {
     private int id;
     private Timestamp timeStart;
     private Timestamp timeStop;
+    private String studentId;
+    private int goodsId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,18 +43,40 @@ public class StudentBorrowGoods {
         this.timeStop = timeStop;
     }
 
+    @Basic
+    @Column(name = "student_id", nullable = false, length = 10)
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    @Basic
+    @Column(name = "goods_id", nullable = false)
+    public int getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentBorrowGoods that = (StudentBorrowGoods) o;
         return id == that.id &&
+                goodsId == that.goodsId &&
                 Objects.equals(timeStart, that.timeStart) &&
-                Objects.equals(timeStop, that.timeStop);
+                Objects.equals(timeStop, that.timeStop) &&
+                Objects.equals(studentId, that.studentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, timeStart, timeStop);
+        return Objects.hash(id, timeStart, timeStop, studentId, goodsId);
     }
 }

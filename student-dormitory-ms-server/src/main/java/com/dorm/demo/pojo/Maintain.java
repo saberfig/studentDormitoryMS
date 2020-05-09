@@ -11,6 +11,7 @@ public class Maintain {
     private Integer status;
     private String description;
     private Timestamp time;
+    private String studentId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -52,6 +53,16 @@ public class Maintain {
         this.time = time;
     }
 
+    @Basic
+    @Column(name = "student_id", nullable = false, length = 10)
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,11 +71,12 @@ public class Maintain {
         return id == that.id &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(description, that.description) &&
-                Objects.equals(time, that.time);
+                Objects.equals(time, that.time) &&
+                Objects.equals(studentId, that.studentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, description, time);
+        return Objects.hash(id, status, description, time, studentId);
     }
 }

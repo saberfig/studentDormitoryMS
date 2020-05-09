@@ -4,11 +4,6 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
-//pojo里的用于链接数据库，创建和数据库里一样的类型
-// 后端如何接收前端的 JS 对象呢？我们很自然地想到在需要创建一个形式上一致的 Java 类。
-//教程里的user类，在第三节修改 User 类代码如下，以建立对数据库的映射
-//@Entity 表示这是一个实体类
-//@Table(name=“student”) 表示对应的表名是 student
 @Entity
 @Table(name = "student", schema = "programdb", catalog = "")
 public class Student {
@@ -20,7 +15,7 @@ public class Student {
     private Integer yearIn;
     private Date birth;
     private String psw;
-    //@Id: 标注用于声明一个实体类的属性映射为数据库的主键列。该属性通常置于属性声明语句之前，可与声明语句同行，也可写在单独行上。 @Id标注也可置于属性的getter方法之前
+
     @Id
     @Column(name = "id", nullable = false, length = 10)
     public String getId() {
@@ -30,7 +25,7 @@ public class Student {
     public void setId(String id) {
         this.id = id;
     }
-    //@Basic表示一个简单的属性到数据库表的字段的映射,对于没有任何标注的 getXxxx() 方法,默认即为
+
     @Basic
     @Column(name = "name", nullable = true, length = 20)
     public String getName() {
@@ -92,7 +87,7 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "psw", nullable = false, length = 32)
+    @Column(name = "psw", nullable = true, length = 32)
     public String getPsw() {
         return psw;
     }
