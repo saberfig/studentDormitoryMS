@@ -6,7 +6,7 @@
           <div class="font">大学生宿舍管理系统</div>
         </div>
         <div class="row">
-          <div class="font">学生登陆</div>
+          <div class="font">宿管中心登陆</div>
         </div>
         <div class="row">
           <div class="font">用户名</div>
@@ -34,44 +34,38 @@
 </template>
 
 <script>
+    export default {
+        name: "SuperManagerLogin",
+      data () {
+        return {
+          loginForm: {
+            username: '',
+            password: ''
+          },
+          responseResult: []
+        }
+      },
+      methods: {
+        login () {
+          this.$axios
+            .post('/login', {
+              id: this.loginForm.username,
+              psw: this.loginForm.password
+            })
+            .then(successResponse => {
+              if (successResponse.data.code === 200) {
+                this.$router.replace({path: '/nav_manager/index'})
+              }
+              if (successResponse.data.code === 400) {
+                this.$router.replace({path: '/failed'})
+              }
 
-  export default {
-    name: 'StudentLogin',
-    data () {
-      return {
-        loginForm: {
-          username: '',
-          password: ''
-        },
-        responseResult: []
-      }
-    },
-    methods: {
-      //methods 中定义了登录按钮的点击方法，即向后端 /login 接口发送数据，获得成功的响应后，
-      //页面跳转到 /index。因为之前我们设置了默认的 URL，所以请求实际上发到了 http://localhost:8443/api/login。
-      login () {
-        this.$axios
-          .post('/login', {
-            id: this.loginForm.username,
-            psw: this.loginForm.password
-          })
-          //成功响应的情况？会返回一个数据类型successResponse
-          //successResponse是服务器响应内容，其中包含json数据。是HttpServletResponse对象
-          .then(successResponse => {
-            if (successResponse.data.code === 200) {
-              this.$router.replace({path: '/nav_student/info'})//切换页面
-            }
-            if (successResponse.data.code === 400) {
-              this.$router.replace({path: '/failed'})
-            }
-
-          })
-          //不成功响应的情况？
-          .catch(failResponse => {
-          })
+            })
+            .catch(failResponse => {
+            })
+        }
       }
     }
-  }
 </script>
 
 <style scoped>
@@ -89,7 +83,7 @@
     background-image:url(https://www.bupt.edu.cn/images/18/05/09/1mu9mjraxf/xyfg3.jpg);
   }
   .box1{
-    //border: 1px solid #00ee00;
+  //border: 1px solid #00ee00;
     height: 300px;
     position:relative;
   }
@@ -98,7 +92,7 @@
     position: absolute;
     width: 400px;
     height:450px;
-    //border: 1px solid red;
+  //border: 1px solid red;
     background-color: #F7F7F7;
     left:50%;
     margin-left: -200px;
