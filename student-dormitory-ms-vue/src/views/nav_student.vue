@@ -12,7 +12,7 @@
         <ul class="templatemo-sidebar-menu">
           <li class="welcomeBack">
             欢迎回来
-            <i>XXX</i>
+            <i>{{id}}</i>
           </li>
           <li>
             <router-link to="info">
@@ -27,19 +27,11 @@
           </li>
 
           <li>
-            <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
+            <a href="javascript:;" data-toggle="modal" data-target="#confirmModal" onclick="">
               <i class="iconfont icon-tuichudenglu"></i>退出登录
             </a>
           </li>
         </ul>
-      </div>
-
-      <div class="templatemo-content-wrapper">
-        <div class="templatemo-content">
-          <transition enter-active-class="animated fadeIn">
-            <router-view></router-view>
-          </transition>
-        </div>
       </div>
       <div
         class="modal fade"
@@ -55,12 +47,22 @@
               <h4 class="modal-title" id="myModalLabel">确认退出？</h4>
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn btn-primary">是</a>
+              <a  href="/StudentLogin" class="btn btn-primary" @click="clearUser">是</a>
               <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="templatemo-content-wrapper">
+        <div class="templatemo-content">
+          <transition enter-active-class="animated fadeIn">
+            <router-view></router-view>
+          </transition>
+        </div>
+      </div>
+
+
       <div
         class="modal fade"
         id="reset"
@@ -69,24 +71,26 @@
         aria-labelledby="myModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">重置密码成功！</h4>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+
   export default {
     name: 'nav_student',
+    data () {
+      return {
+        id:this.COMMON.id,
+      }
+    },
+    methods:{
+      clearUser(){
+        this.COMMON.clearUser()
+      }
+    },
     mounted:function(){
       $('.templatemo-sidebar-menu li.sub a').click(function(){
         if($(this).parent().hasClass('open')) {
@@ -105,4 +109,5 @@
   .temp{
     margin-top: 15%;
   }
+
 </style>

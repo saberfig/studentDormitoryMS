@@ -59,6 +59,17 @@
           //successResponse是服务器响应内容，其中包含json数据。是HttpServletResponse对象
           .then(successResponse => {
             if (successResponse.data.code === 200) {
+              /*test code
+              console.log(123),
+              console.log(successResponse.data.code),
+                console.log(successResponse.data.name),
+                */
+                this.COMMON.id=this.loginForm.username,
+                this.COMMON.status=0,
+                /*test code
+                console.log(this.COMMON.id),
+                console.log(this.COMMON.status),
+                */
               this.$router.replace({path: '/nav_student/info'})//切换页面
             }
             if (successResponse.data.code === 400) {

@@ -67,4 +67,7 @@ public interface StudentDAO extends JpaRepository<Student, Integer>{
     @Modifying
     @Query(value = "update Student set psw=:id where id=:id")
     void updateStudentByPsw(@Param("id") String id);
+
+    @Query(value = "select name from Student where id=:id")
+    Student getStudentName(@Param("id") String id);
 }

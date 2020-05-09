@@ -37,7 +37,7 @@ public class LoginController {
         if(null== student){
             return new Result(400);//返回不同的结果
         }else{
-            return new Result(200);
+            return new Result(200,student.getName());
         }
     }
 }

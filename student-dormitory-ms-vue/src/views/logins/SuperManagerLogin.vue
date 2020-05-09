@@ -54,6 +54,8 @@
             })
             .then(successResponse => {
               if (successResponse.data.code === 200) {
+                this.COMMON.id=this.loginForm.username,
+                this.COMMON.status=1,
                 this.$router.replace({path: '/nav_manager/index'})
               }
               if (successResponse.data.code === 400) {

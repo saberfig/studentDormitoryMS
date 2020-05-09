@@ -10,7 +10,7 @@
 	<div class="template-page-wrapper" id="box">
 		<div class="navbar-collapse collapse templatemo-sidebar">
 			<ul class="templatemo-sidebar-menu">
-				<li class="welcomeBack">欢迎回来 <i>XXX</i></li>
+				<li class="welcomeBack">欢迎回来 <i>{{id}}</i></li>
 				<li class="active"><router-link to="/index_build"><i class="iconfont icon-zhuye"></i>主页</router-link></li>
 				<li class="sub">
 					<a href="javascript:;">
@@ -64,8 +64,10 @@
 						<h4 class="modal-title" id="myModalLabel">确认退出？</h4>
 					</div>
 					<div class="modal-footer">
-						<a href="#" class="btn btn-primary">Yes</a>
+						<a href="/DormManagerLogin" class="btn btn-primary" @click="clearUser">Yes</a>
+
 						<button type="button"  class="btn btn-default" data-dismiss="modal">No</button>
+            <el-button icon="el-icon-close" circle></el-button>
 					</div>
 				</div>
 			</div>
@@ -77,6 +79,16 @@
 <script>
   export default {
     name: 'nav_build',
+    data () {
+      return {
+        id:this.COMMON.id,
+      }
+    },
+    methods:{
+      clearUser(){
+        this.COMMON.clearUser()
+      }
+    },
     mounted:function(){
       $('.templatemo-sidebar-menu li.sub a').click(function(){
         if($(this).parent().hasClass('open')) {

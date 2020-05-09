@@ -40,4 +40,7 @@ public class StudentService {
         studentDAO.updateStudentByPsw(id);
         return studentDAO.findById(id);
     }
+    public Student getNameById(String id){
+        return studentDAO.getStudentName(id);
+    }
 }
