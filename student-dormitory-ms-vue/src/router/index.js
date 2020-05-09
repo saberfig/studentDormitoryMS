@@ -26,6 +26,11 @@ import jiluweiji from "../views/build/jiluweiji"
 import xiaotz from "../views/build/xiaotz"
 import xuetz from "../views/build/xuetz"
 
+import notification from "../views/student/notification";
+import info from "../views/student/info";
+
+import StudentLogin from "../views/logins/StudentLogin";
+
 Vue.use(Router)
 
 export default new Router({
@@ -175,6 +180,36 @@ export default new Router({
         },
       ]
     },
+    //登陆部分页面
+    {
+      path: '/StudentLogin',
+      name: 'StudentLogin',
+      component: StudentLogin,
+    },
+    //学生个人主页部分
+    {
+      path: '/nav_student',
+      name: 'nav_student',
+      component: nav_student,
+      children: [
+        {
+          path: 'info',
+          name: 'info',
+          component:info,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: 'notification',
+          component: notification,
+          meta: {
+            requireAuth: true
+          },
+        },
+
+      ]
+    }
   ],
   mode:'history'
 })
