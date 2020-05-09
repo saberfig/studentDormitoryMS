@@ -31,7 +31,7 @@
 					学号：<br><input type="text" class="templatemo-input-weiji"><br>
 					详细描述：<br>
 					<textarea rows="10" cols="30" class="templatemo-textarea-weiji">请输入详细信息:</textarea><br>
-					<input type="submit"><br>
+					<button type="primary" @click="onSubmit">提交违纪信息</button><br>
 				</form>
 			</div>
 		</div>
