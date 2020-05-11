@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-    <section v-for="item in notice" :key="item.id">
+    <section v-for="item in this.notice" :key="item.id">
       <!--公告区域1-->
       <div class="timeline-block">
         <!--标题-->
@@ -66,6 +66,19 @@ export default {
      })
    },
   },
+mounted:function(){
+        this.$axios
+          .post("/nav_build/xsxuetz", {
+            id: this.COMMON.id,
+                 })
+                 .then(successResponse => {
+                   this.notice.not = successResponse.data.time,
+                   this.notice.nod = successResponse.data.description
+
+                 })
+                 .catch(failResponse => {
+                 });
+             }
 
 };
 </script>

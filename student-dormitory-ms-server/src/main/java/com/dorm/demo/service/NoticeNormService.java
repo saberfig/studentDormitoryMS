@@ -18,6 +18,9 @@ public class NoticeNormService {
     }
 
     public List<NoticeNorm> listbydmid(String dmid){
+        System.out.println("11");
+        System.out.println(noticeNormDAO.findAllByDormManagerIdLike(dmid));
+        System.out.println("111");
         return noticeNormDAO.findAllByDormManagerIdLike(dmid);
     }
 }
