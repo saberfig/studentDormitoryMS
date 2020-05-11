@@ -11,17 +11,15 @@
           <tr>
             <th>校区</th>
             <th>寝室楼号</th>
-            <th>层数</th>
             <th>房间号</th>
             <th>床号</th>
           </tr>
           </thead>
           <tr>
-            <td>西土城校区</td>
-            <td>9号公寓</td>
-            <td>1</td>
-            <td>17</td>
-            <td>1</td>
+            <td>{{this.responsestudentinfo.campusname}}</td>
+            <td>{{this.responsestudentinfo.dormnum}}号公寓</td>
+            <td>{{this.responsestudentinfo.roomnum}}</td>
+            <td>{{this.responsestudentinfo.bednum}}</td>
           </tr>
         </table>
       </div>
@@ -33,7 +31,55 @@
 
 <script>
     export default {
-        name: "info"
+      name: "info",
+      data() {
+        return {
+          request: {
+            userid: this.COMMON.id,
+          },
+          responsestudentinfo: {
+            campusname: "test西土城校区",
+            dormnum: "test9",
+            roomnum: "test117",
+            bednum: "test1",
+          },
+          responseResult: []
+        };
+      },
+      mounted:function(){
+        this.$axios
+          .post("/studentinfo", {
+            id: this.COMMON.id,
+          })
+          .then(successResponse => {
+            this.responsestudentinfo.campusname = successResponse.data.campusname,
+              this.responsestudentinfo.dormnum = successResponse.data.dormnum,
+              this.responsestudentinfo.roomnum = successResponse.data.roomnum,
+              this.responsestudentinfo.bednum = successResponse.data.bednum
+
+          })
+          .catch(failResponse => {
+          });
+      }
+
+      /*
+            this.$axios
+        .post("/studentinfo", {
+          id: this.COMMON.id,
+        })
+        .then(successResponse => {
+          this.responsestudentinfo.campusname = successResponse.data.campusname,
+            this.responsestudentinfo.dormnum = successResponse.data.dormnum,
+            this.responsestudentinfo.roomnum = successResponse.data.roomnum,
+            this.responsestudentinfo.bednum = successResponse.data.bednum
+
+        })
+        .catch(failResponse => {
+        });
+       */
+
+
+
     }
 </script>
 

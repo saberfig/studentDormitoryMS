@@ -40,7 +40,8 @@
         return {
           loginForm: {
             username: '',
-            password: ''
+            password: '',
+            status: '3'
           },
           responseResult: []
         }
@@ -50,16 +51,17 @@
           this.$axios
             .post('/login', {
               id: this.loginForm.username,
-              psw: this.loginForm.password
+              psw: this.loginForm.password,
+              status: '3'
             })
             .then(successResponse => {
               if (successResponse.data.code === 200) {
                 this.COMMON.id=this.loginForm.username,
-                this.COMMON.status=1,
+                this.COMMON.status=3,
                 this.$router.replace({path: '/nav_manager/index'})
               }
               if (successResponse.data.code === 400) {
-                this.$router.replace({path: '/failed'})
+                this.$router.replace({path: '/SuperManagerLogin'})
               }
 
             })

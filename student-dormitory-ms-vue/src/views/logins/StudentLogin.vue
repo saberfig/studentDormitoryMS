@@ -41,7 +41,8 @@
       return {
         loginForm: {
           username: '',
-          password: ''
+          password: '',
+          status: '1'
         },
         responseResult: []
       }
@@ -53,29 +54,20 @@
         this.$axios
           .post('/login', {
             id: this.loginForm.username,
-            psw: this.loginForm.password
+            psw: this.loginForm.password,
+            status: '1'
           })
           //成功响应的情况？会返回一个数据类型successResponse
           //successResponse是服务器响应内容，其中包含json数据。是HttpServletResponse对象
           .then(successResponse => {
             if (successResponse.data.code === 200) {
-              /*test code
-              console.log(123),
-              console.log(successResponse.data.code),
-                console.log(successResponse.data.name),
-                */
                 this.COMMON.id=this.loginForm.username,
-                this.COMMON.status=0,
-                /*test code
-                console.log(this.COMMON.id),
-                console.log(this.COMMON.status),
-                */
+                this.COMMON.status=1,
               this.$router.replace({path: '/nav_student/info'})//切换页面
             }
             if (successResponse.data.code === 400) {
-              this.$router.replace({path: '/failed'})
+              this.$router.replace({path: '/StudentLogin'})
             }
-
           })
           //不成功响应的情况？
           .catch(failResponse => {

@@ -5,6 +5,10 @@ import com.dorm.demo.pojo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dorm.demo.pojo.studentresponse.StudentInfo;
+
+import java.util.List;
+
 /*
 这里实际上是对 StudentDAO 进行了二次封装，
 一般来讲，我们在 DAO 中只定义基础的增删改查操作，而具体的操作，需要由 Service 来完成。
@@ -16,21 +20,29 @@ import org.springframework.stereotype.Service;
 public class StudentService {
     @Autowired
     StudentDAO studentDAO;//创建一个Data Access Object（数据访问对象，DAO）
+
+
     //通过id获取student表条目
     public Student getById(String id){
         return studentDAO.findById(id);
     }
+
+
     //通过id和密码获取student表条目
     public Student get(String id, String psw){
-        System.out.println(id);
-        System.out.println(psw);
+        System.out.println("传入service搜索的id："+id);
+        System.out.println("传入service搜索的psw:"+psw);
         return studentDAO.findByIdAndPsw(id,psw);
     }
+
+
     //根据id判断student条目是否存在
     public boolean isExit(String id){
         Student student1 =getById(id);
         return null!= student1;
     }
+
+
     //添加学生项
     public void add(Student student1){
         studentDAO.save(student1);
@@ -43,4 +55,23 @@ public class StudentService {
     public Student getNameById(String id){
         return studentDAO.getStudentName(id);
     }
+
+    /*
+    public StudentInfo getStudentInfoById(String id){
+        List<Object> queryResult = studentDAO.getStudentInfo(id);
+
+
+    }
+    */
+    public StudentInfo getStudentInfoById(String id){
+        List<StudentInfo> queryResult = studentDAO.getStudentInfo(id);
+        StudentInfo studentInfo=queryResult.get(0);
+        System.out.println("校区名：“"+studentInfo.getCampusname());
+        System.out.println("宿舍号："+studentInfo.getCampusname());
+        System.out.println("房间号："+studentInfo.getCampusname());
+        System.out.println("床号："+studentInfo.getCampusname());
+        return studentInfo;
+    }
+
+
 }

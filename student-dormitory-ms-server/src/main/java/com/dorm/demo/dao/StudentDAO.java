@@ -1,11 +1,16 @@
 package com.dorm.demo.dao;
 
 import com.dorm.demo.pojo.Student;
+import com.dorm.demo.pojo.Student_Bed;
+import com.dorm.demo.pojo.studentresponse.StudentInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+
+import java.util.List;
 
 //DAO里的用一个已经定义好的方式，通过已经和数据库链接的pojo，访问数据库里的内容，并进行操作
 //定义一些简单的操作
@@ -57,9 +62,8 @@ NotIn        findByAgeNotIn              ...其中x.age不在？
 
 
 public interface StudentDAO extends JpaRepository<Student, Integer>{
+
     Student findById(String id);//通过 id 字段查询到对应的行，并返回给 User 类。
-
-
 
     Student findByIdAndPsw(String id, String psw);
 
@@ -70,4 +74,13 @@ public interface StudentDAO extends JpaRepository<Student, Integer>{
 
     @Query(value = "select name from Student where id=:id")
     Student getStudentName(@Param("id") String id);
+    /*
+    @Query(value = "select s.name from Student s left join Bed b on b.studentId=s.id left join Dorm d on d.id=b.roomDormId left join Campus c on c.id=b.roomDormCampusId where s.id=:id")
+    List<Object> getStudentInfo(@Param("id") String id);
+    */
+    @Query(value = "select "+
+            "new StudentInfo(c.name,d.id,r.id,b.id) "+
+            "from Student s left join Bed b on b.studentId=s.id left join Room r on r.id=b.roomId left join Dorm d on d.id=b.roomDormId left join Campus c on c.id=b.roomDormCampusId where s.id=:id")
+    List<StudentInfo> getStudentInfo(@Param("id") String id);
+
 }
