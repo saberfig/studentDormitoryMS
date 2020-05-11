@@ -1,32 +1,72 @@
 <template>
   <div>
     <div>
-      <section>
-        <!--公告区域1-->
-        <div class="timeline-block">
-          <!--标题-->
-          <div class="timeline-title-info">
-            <div class="timeline-title">停水公告</div>
-            <div class="timeline-time">2020-05-02</div>
-          </div>
-          <!--内容-->
-          <div class="timeline-info">
-            <div class="timeline-content">学九公寓由于管道施工，将于今日中午12：00开始停水，恢复时间另行通知，望学生周知</div>
-          </div>
+    <section v-for="item in notice" :key="item.id">
+      <!--公告区域1-->
+      <div class="timeline-block">
+        <!--标题-->
+        <div class="timeline-title-info">
+          <div class="timeline-title">公告</div>
+          <div class="timeline-time">{{$moment(item.not).format('YYYY-MM-DD')}}</div>
         </div>
-        <!--end 公告区域-->
+        <!--内容-->
+        <div class="timeline-info">
+          <div class="timeline-content">{{item.nod}}</div>
+        </div>
+      </div>
+      <!--end 公告区域-->
       </section>
     </div>
 
     <div>
       <button type="button">发布公告</button>
     </div>
-  </div>
+    <div>
+    	<h2>发布公告</h2>
+    	<el-form  class="templatemo-form-weiji" ref="dataForm">
+    	<el-form-item label="时间"  prop="time">
+    	<br><el-input v-model="form.time" type="date"></el-input></el-form-item><br>
+    	<el-form-item label="描述"  prop="description"><br>
+    	<br><el-input v-model="form.description" class="templatemo-input-weiji"></el-input></el-form-item><br>
+    	<el-button type="primary" @click="onSubmit">发布公告</el-button><br>
+    	</el-form>
+    	</div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "chuangwei_build"
+  name: "xuetz",
+  data() {
+    return{
+      form: {
+        dormManagerId:'',
+        description:'',
+        time:'',
+      },
+      notice:[
+      {
+      nod:'',
+      not:'',
+      }
+    ]
+  }
+},
+   methods:{
+     onSubmit(){
+       this.$axios
+         .post("/nav_build/xuetz",{
+           dormManagerId: this.COMMON.id,
+           time: this.form.time,
+           description: this.form.description
+         }).then(resp=> {
+         if (resp && resp.status === 200) {
+           this.$emit('onSubmit')
+         }
+     })
+   },
+  },
+
 };
 </script>
 
