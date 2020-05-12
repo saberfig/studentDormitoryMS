@@ -19,15 +19,23 @@ public class NoticeNormController {
     @Autowired
     NoticeNormService noticeNormService;
 
-    /*@CrossOrigin
-    @PostMapping("api/nav_build/xuetz")
+    @CrossOrigin
+    @PostMapping("api/nav_build/xsxuetz")
     @ResponseBody
     public List<NoticeNorm> listbydmid(@RequestBody DormManagerPageRequest dormManagerPageRequest)throws Exception{
         String dmid = dormManagerPageRequest.getId();
-        dmid = HtmlUtils.htmlEscape(dmid);
+        //dmid = HtmlUtils.htmlEscape(dmid);
         System.out.println(dmid);
         return (noticeNormService.listbydmid(dmid));
-    }*/
+    }
+//    @CrossOrigin
+//    @GetMapping("api/nav_build/xsxuetz")
+//    @ResponseBody
+//    public List<NoticeNorm> listbydmid()throws Exception{
+//        String dmid="2017211862";
+//        //System.out.println(dmid);
+//        return (noticeNormService.listbydmid(dmid));
+//    }
     @CrossOrigin
     @PostMapping("api/nav_build/xuetz")
     @ResponseBody

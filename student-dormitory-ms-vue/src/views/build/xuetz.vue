@@ -7,15 +7,15 @@
         <!--标题-->
         <div class="timeline-title-info">
           <div class="timeline-title">公告</div>
-          <div class="timeline-time">{{$moment(item.not).format('YYYY-MM-DD')}}</div>
+          <div class="timeline-time">{{$moment(item.time).format('YYYY-MM-DD')}}</div>
         </div>
         <!--内容-->
         <div class="timeline-info">
-          <div class="timeline-content">{{item.nod}}</div>
+          <div class="timeline-content">{{item.description}}</div>
         </div>
       </div>
       <!--end 公告区域-->
-      </section>
+    </section>
     </div>
 
     <div>
@@ -46,8 +46,10 @@ export default {
       },
       notice:[
       {
-      nod:'',
-      not:'',
+      id:'',
+      time:'',
+      description:'',
+      dormManagerId:'',
       }
     ]
   }
@@ -66,6 +68,17 @@ export default {
      })
    },
   },
+mounted:function(){
+        this.$axios
+          .post("/nav_build/xsxuetz", {
+            id: this.COMMON.id,
+                 })
+                 .then(successResponse => {
+                   this.notice = successResponse.data
+                 })
+                 .catch(failResponse => {
+                 });
+             }
 
 };
 </script>
