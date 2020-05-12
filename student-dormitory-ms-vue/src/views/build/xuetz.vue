@@ -1,21 +1,21 @@
 <template>
   <div>
     <div>
-    <section v-for="item in this.notice" :key="item.id">
+    <section v-for="item in notice" :key="item.id">
       <!--公告区域1-->
       <div class="timeline-block">
         <!--标题-->
         <div class="timeline-title-info">
           <div class="timeline-title">公告</div>
-          <div class="timeline-time">{{$moment(item.not).format('YYYY-MM-DD')}}</div>
+          <div class="timeline-time">{{$moment(item.time).format('YYYY-MM-DD')}}</div>
         </div>
         <!--内容-->
         <div class="timeline-info">
-          <div class="timeline-content">{{item.nod}}</div>
+          <div class="timeline-content">{{item.description}}</div>
         </div>
       </div>
       <!--end 公告区域-->
-      </section>
+    </section>
     </div>
 
     <div>
@@ -46,8 +46,10 @@ export default {
       },
       notice:[
       {
-      nod:'',
-      not:'',
+      id:'',
+      time:'',
+      description:'',
+      dormManagerId:'',
       }
     ]
   }
@@ -72,9 +74,7 @@ mounted:function(){
             id: this.COMMON.id,
                  })
                  .then(successResponse => {
-                   this.notice.not = successResponse.data.time,
-                   this.notice.nod = successResponse.data.description
-
+                   this.notice = successResponse.data
                  })
                  .catch(failResponse => {
                  });
