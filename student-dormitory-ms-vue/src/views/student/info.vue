@@ -61,25 +61,6 @@
           .catch(failResponse => {
           });
       }
-
-      /*
-            this.$axios
-        .post("/studentinfo", {
-          id: this.COMMON.id,
-        })
-        .then(successResponse => {
-          this.responsestudentinfo.campusname = successResponse.data.campusname,
-            this.responsestudentinfo.dormnum = successResponse.data.dormnum,
-            this.responsestudentinfo.roomnum = successResponse.data.roomnum,
-            this.responsestudentinfo.bednum = successResponse.data.bednum
-
-        })
-        .catch(failResponse => {
-        });
-       */
-
-
-
     }
 </script>
 

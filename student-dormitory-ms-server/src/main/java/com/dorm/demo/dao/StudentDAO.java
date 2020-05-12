@@ -2,7 +2,14 @@ package com.dorm.demo.dao;
 
 import com.dorm.demo.pojo.Student;
 import com.dorm.demo.pojo.Student_Bed;
+import com.dorm.demo.pojo.DormManager;
+import com.dorm.demo.pojo.NoticeNorm;
+
 import com.dorm.demo.pojo.studentresponse.StudentInfo;
+import com.dorm.demo.pojo.studentresponse.StudentNotice;
+
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -82,5 +89,14 @@ public interface StudentDAO extends JpaRepository<Student, Integer>{
             "new StudentInfo(c.name,d.id,r.id,b.id) "+
             "from Student s left join Bed b on b.studentId=s.id left join Room r on r.id=b.roomId left join Dorm d on d.id=b.roomDormId left join Campus c on c.id=b.roomDormCampusId where s.id=:id")
     List<StudentInfo> getStudentInfo(@Param("id") String id);
+
+    /*
+    @Query(value = "select "+
+            "new StudentNotice(n.time, n.description) "+
+            "from Student s left join Bed b on b.studentId=s.id left join DormManager d on d.dormId=b.roomDormId left join NoticeNorm n on n.dormManagerId=d.id where s.id=:id")
+    List<StudentNotice> getStudentDormNotice(@Param("id") String id);
+    */
+
+
 
 }

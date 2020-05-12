@@ -7,11 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface DormManagerDAO extends JpaRepository<DormManager, Integer>{
 
     DormManager findById(String id);//通过 id 字段查询到对应的行，并返回给DormManager类。
 
     DormManager findByIdAndPsw(String id, String psw);
 
+    List<DormManager> findAllByDormId(String dormid);
 
+    DormManager findByDormId(String id);
 }
