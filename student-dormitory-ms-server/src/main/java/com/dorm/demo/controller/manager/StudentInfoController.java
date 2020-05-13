@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class StudentInfo {
+public class StudentInfoController {
     @Autowired
     StudentService studentService;
 

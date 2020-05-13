@@ -9,5 +9,4 @@ import java.util.List;
 public interface NoticeNormDAO extends JpaRepository<NoticeNorm, Integer>{
     List<NoticeNorm> findAllByDormManagerIdLike(String dmid);
 
-
 }

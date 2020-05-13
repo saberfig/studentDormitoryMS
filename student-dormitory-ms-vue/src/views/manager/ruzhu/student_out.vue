@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <label class="pull-right" style="margin: 20px 0;">
+      <label class="pull-left" style="margin: 20px 0;">
         学号搜索：
         <input
           type="text"

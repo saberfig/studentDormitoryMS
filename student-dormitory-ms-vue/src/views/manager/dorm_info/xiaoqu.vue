@@ -24,9 +24,9 @@
         <tr v-for="item in search(keywords)" :key="item.id">
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
-          <td>{{ item.buildnum }}</td>
-          <td>{{ item.roomnum }}</td>
-          <td>{{ item.bednum }}</td>
+          <td>{{ item.dormNum }}</td>
+          <td>{{ item.roomNum }}</td>
+          <td>{{ item.bedNum }}</td>
           <td>
             <li style="list-style: none;">
               <button type="reset" class="btn btn-danger" @click="del(item.id)">删除</button>
@@ -82,14 +82,23 @@ export default {
       roomnum: "",
       bednum: "",
       keywords: "",
-      list: [
-        { id: 1, name: "宏福校区", buildnum: 8, roomnum: 130, bednum: 520 },
-        { id: 2, name: "沙河校区", buildnum: 12, roomnum: 195, bednum: 780 },
-        { id: 3, name: "西土城校区", buildnum: 16, roomnum: 260, bednum: 1040 }
-      ]
+      list: []
     };
   },
+  mounted() {
+    this.get_campus_info();
+  },
   methods: {
+    get_campus_info(){
+      this.$axios
+        .get("/manager/get_campus_info")
+        .then(successResponse => {
+          this.list=successResponse.data;
+          console.log(this.list);
+        })
+        .catch(failResponse => {});
+    },
+
     add() {
       var index = this.list.findIndex(item => item.id == this.id);
       if (index == -1) {

@@ -1,4 +1,4 @@
-package com.dorm.demo.pojo.studentresponse;
+package com.dorm.demo.pojo.responsePOJO;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

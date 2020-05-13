@@ -1,16 +1,15 @@
 package com.dorm.demo.controller.student;
 
-import com.dorm.demo.dao.StudentDAO;
 import com.dorm.demo.pojo.StudentPageRequest;
 import com.dorm.demo.pojo.Student;
 
-import com.dorm.demo.pojo.studentresponse.StudentNotice;
+import com.dorm.demo.pojo.responsePOJO.StudentNotice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
-import com.dorm.demo.pojo.studentresponse.StudentInfo;
+import com.dorm.demo.pojo.responsePOJO.StudentInfo;
 
 import com.dorm.demo.service.StudentService;
 

@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Dorm {
     private String id;
     private String campusId;
+    private String name;
 
     @Id
     @Column(name = "id", nullable = false, length = 10)
@@ -30,17 +31,28 @@ public class Dorm {
         this.campusId = campusId;
     }
 
+    @Basic
+    @Column(name = "name", nullable = true, length = 45)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dorm that = (Dorm) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(campusId, that.campusId);
+                Objects.equals(campusId, that.campusId) &&
+                Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, campusId);
+        return Objects.hash(id, campusId, name);
     }
 }

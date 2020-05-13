@@ -11,11 +11,10 @@ import com.dorm.demo.pojo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dorm.demo.pojo.studentresponse.StudentInfo;
-import com.dorm.demo.pojo.studentresponse.StudentNotice;
+import com.dorm.demo.pojo.responsePOJO.StudentInfo;
+import com.dorm.demo.pojo.responsePOJO.StudentNotice;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;

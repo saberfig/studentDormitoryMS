@@ -1,12 +1,9 @@
-package com.dorm.demo.pojo.studentresponse;
-
-import com.sun.javafx.beans.IDProperty;
+package com.dorm.demo.pojo.responsePOJO;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Entity
 public class StudentNotice {

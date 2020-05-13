@@ -1,13 +1,8 @@
 package com.dorm.demo.dao;
 
 import com.dorm.demo.pojo.Student;
-import com.dorm.demo.pojo.Student_Bed;
-import com.dorm.demo.pojo.DormManager;
-import com.dorm.demo.pojo.NoticeNorm;
 
-import com.dorm.demo.pojo.studentresponse.StudentInfo;
-import com.dorm.demo.pojo.studentresponse.StudentNotice;
-
+import com.dorm.demo.pojo.responsePOJO.StudentInfo;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
