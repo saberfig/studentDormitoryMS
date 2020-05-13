@@ -1,6 +1,6 @@
 package com.dorm.demo.pojo.studentresponse;
 
-import com.sun.javafx.beans.IDProperty;
+//import com.sun.javafx.beans.IDProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
