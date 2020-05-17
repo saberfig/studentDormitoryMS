@@ -65,6 +65,7 @@
         </li>
         <li>
           <button type="reset" class="btn btn-success" @click="modify">修改</button>
+          <button type="reset" class="btn btn-success" @click="get_campus_info">test</button>
         </li>
       </ul>
     </div>
