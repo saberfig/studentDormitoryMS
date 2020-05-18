@@ -39,7 +39,6 @@
 		</div>
 </template>
 
-<!--之前是jiluweiji_build但还是不行-->
 <script>
 export default {
   name: "jiluweiji",

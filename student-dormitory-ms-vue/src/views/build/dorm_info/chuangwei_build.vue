@@ -15,13 +15,13 @@
             <th>联系方式</th>
           </tr>
         </thead>
-        <tr>
-          <td>301</td>
-          <td>韩卓言</td>
-          <td>男</td>
-          <td>2017211862</td>
-          <td>软件工程</td>
-          <td>132xxxx9699</td>
+        <tr v-for="item in mastudentinfo" :key="item.id">
+          <td>{{item.roomId}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.sex}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.major}}</td>
+          <td>{{item.tel}}</td>
         </tr>
       </table>
     </div>
@@ -30,7 +30,32 @@
 
 <script>
 export default {
-  name: "chuangwei_build"
+  name: "chuangwei_build",
+  data() {
+    return{
+      mastudentinfo:[
+        {
+          id:'',
+          name:'',
+          roomId:'',
+          sex:'',
+          major:'',
+          tel:'',
+        }
+      ]
+    }
+  },
+  mounted: function() {
+    this.$axios
+      .post("/nav_build/chuangwei_build", {
+        id: this.COMMON.id,
+              })
+              .then(successResponse => {
+                this.mastudentinfo = successResponse.data
+              })
+              .catch(failResponse  => {
+              });
+  }
 };
 </script>
 
