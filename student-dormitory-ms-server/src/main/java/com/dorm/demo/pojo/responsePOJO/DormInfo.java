@@ -8,44 +8,45 @@ import javax.persistence.Id;
 @Entity
 public class DormInfo {
     @Id
-    private String id;
-    private String name;
-    private int dormNum;
-    private int roomNum;
+
+    private String dormName;
+    private String campusName;
+    private String dormId;
     private int bedNum;
+    private int roomNum;
 
     public DormInfo(){}
 
-    public DormInfo(String id,String name,int dormNum,int roomNum,int bedNum){
-        this.id=id;
-        this.name=name;
-        this.dormNum=dormNum;
+    public DormInfo(String dormName,String campusName,String dormId,int bedNum,int roomNum){
+        this.dormId=dormId;
+        this.dormName=dormName;
+        this.campusName=campusName;
         this.roomNum=roomNum;
         this.bedNum=bedNum;
     }
 
     public String getId() {
-        return id;
+        return dormId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String dormId) {
+        this.dormId = dormId;
     }
 
-    public String getName() {
-        return name;
+    public String getdormName() {
+        return dormName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setdormName(String dormName) {
+        this.dormName = dormName;
     }
 
-    public int getDormNum() {
-        return dormNum;
+    public String getcampusName() {
+        return campusName;
     }
 
-    public void setDormNum(int dormNum) {
-        this.dormNum = dormNum;
+    public void setcampusName(String campusName) {
+        this.campusName = campusName;
     }
 
     public int getRoomNum() {

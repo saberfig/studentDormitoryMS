@@ -13,6 +13,7 @@ public class DormService {
     DormDao dormDao;
 
     public List<DormInfo> getDormInfo(){
+
         return dormDao.getDormInfo();
     }
 }
