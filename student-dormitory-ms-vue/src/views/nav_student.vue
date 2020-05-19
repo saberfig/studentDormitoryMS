@@ -27,6 +27,12 @@
           </li>
 
           <li>
+            <router-link to="changepsw">
+              <i class="iconfont icon-zhuye"></i>更改密码
+            </router-link>
+          </li>
+
+          <li>
             <a href="javascript:;" data-toggle="modal" data-target="#confirmModal" onclick="">
               <i class="iconfont icon-tuichudenglu"></i>退出登录
             </a>

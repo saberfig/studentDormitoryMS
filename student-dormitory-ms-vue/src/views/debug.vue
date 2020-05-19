@@ -1,5 +1,6 @@
 <template>
   <div class="debug">
+    <div><router-link to="/NewLogin"><h1>统一登录</h1></router-link></div>
     <div><router-link to="/StudentLogin"><h1>学生登录</h1></router-link></div>
     <div><router-link to="/DormManagerLogin"><h1>宿舍管理员登录</h1></router-link></div>
     <div><router-link to="/SuperManagerLogin"><h1>宿管中心登录</h1></router-link></div>

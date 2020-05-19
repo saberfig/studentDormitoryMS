@@ -18,7 +18,7 @@
           <div class="font">密码</div>
         </div>
         <div class="row">
-          <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
+          <el-input v-model="loginForm.password" placeholder="请输入密码" type="password"></el-input>
         </div>
         <div class="row" >
           <div id="loginbutton" align="center">
@@ -61,7 +61,8 @@
                 this.$router.replace({path: '/nav_manager/index'})
               }
               if (successResponse.data.code === 400) {
-                this.$router.replace({path: '/SuperManagerLogin'})
+                //this.$router.replace({path: '/SuperManagerLogin'})
+                this.$alert("用户名或密码错误！")
               }
 
             })
