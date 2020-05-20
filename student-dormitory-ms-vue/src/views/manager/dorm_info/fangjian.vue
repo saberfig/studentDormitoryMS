@@ -25,7 +25,7 @@
         <option class="option1">学二十九</option>
         <option class="option1">雁北楼</option>
       </select>
-
+    <button @click="qqq">111</button>
       <label class="pull-right" style="margin: 20px 0;">
         输入搜索关键字：
         <input
@@ -46,14 +46,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in search(keywords)" :key="item.roomId">
+          <tr v-for="item in search(keywords)" :key="item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.campusName }}</td>
             <td>{{ item.dormName }}</td>
             <td>{{ item.bedNum }}</td>
             <td>
               <li style="list-style: none;">
-                <button type="reset" class="btn btn-danger" @click="del(item.roomId)">删除</button>
+                <button type="reset" class="btn btn-danger" @click="del(item.name)">删除</button>
               </li>
             </td>
           </tr>
@@ -136,6 +136,7 @@ export default {
   },
   mounted() {
     this.get_room_info();
+    console.log(this.list)
   },
   methods: {
     get_room_info() {
@@ -194,7 +195,7 @@ export default {
         if (
           (item.dormName.includes(keywords) ||
             item.campusName.includes(keywords) ||
-            item.roomId.toString().includes(keywords) ||
+            item.roomId.includes(keywords) ||
             item.name.includes(keywords)) &&
           item.campusName.includes(this.campusName) &&
           item.dormName.includes(this.dormName)
@@ -202,6 +203,9 @@ export default {
           return item;
         }
       });
+    },
+    qqq(){
+      console.log(this.list)
     }
   }
 };
