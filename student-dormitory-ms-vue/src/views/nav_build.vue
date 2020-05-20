@@ -11,7 +11,7 @@
 		<div class="navbar-collapse collapse templatemo-sidebar">
 			<ul class="templatemo-sidebar-menu">
 				<li class="welcomeBack">欢迎回来 <i>{{id}}</i></li>
-				<li class="active"><router-link to="/index_build"><i class="iconfont icon-zhuye"></i>主页</router-link></li>
+				<li class="active"><router-link to="index_build"><i class="iconfont icon-zhuye"></i>主页</router-link></li>
 				<li class="sub">
 					<a href="javascript:;">
 						<i class="iconfont icon-sushe"></i> 宿舍信息管理 <div class="pull-right"><span class="caret"></span></div>
