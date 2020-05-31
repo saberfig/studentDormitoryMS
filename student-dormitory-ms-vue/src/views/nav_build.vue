@@ -17,7 +17,7 @@
 						<i class="iconfont icon-sushe"></i> 宿舍信息管理 <div class="pull-right"><span class="caret"></span></div>
 					</a>
 					<ul class="templatemo-submenu">
-						<li><router-link to="fangjian_build">房间信息</router-link></li>
+						<!---<li><router-link to="fangjian_build">房间信息</router-link></li>--->
 						<li><router-link to="chuangwei_build">学生信息</router-link></li>
 					</ul>
 				</li>
@@ -26,10 +26,12 @@
 						<i class="iconfont icon-xue"></i> 学生信息管理 <div class="pull-right"><span class="caret"></span></div>
 					</a>
 					<ul class="templatemo-submenu">
-						<li><router-link to="jiluweiji">记录学生违纪信息</router-link></li>
+						<li><router-link to="jiluweiji">查看学生违纪信息</router-link></li>
+						<li><router-link to="jlweiji">记录学生违纪信息</router-link></li>
 					</ul>
 					<ul class="templatemo-submenu">
-						<li><router-link to="fangkexinxi">访客信息登记</router-link></li>
+						<li><router-link to="fangkexinxi">查看访客信息</router-link></li>
+						<li><router-link to="jlfangkexinxi">记录访客信息</router-link></li>
 					</ul>
 				</li>
 				<li class="sub" >
@@ -37,10 +39,11 @@
 						<i class="iconfont icon-xitongrizhi"></i> 日志信息 <div class="pull-right"><span class="caret"></span></div>
 					</a>
 					<ul class="templatemo-submenu">
-						<li><router-link to="xiaotz">校方通知日志</router-link></li>
+						<li><router-link to="xiaotz">校方通知</router-link></li>
 					</ul>
 					<ul class="templatemo-submenu">
-						<li><router-link to="xuetz">通知学生日志</router-link></li>
+						<li><router-link to="xuetz">查看已发布学生通知</router-link></li>
+						<li><router-link to="fbxuetz">发布学生通知</router-link></li>
 					</ul>
 				</li>
 				<li>
