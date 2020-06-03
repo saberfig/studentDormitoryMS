@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addpadding">
     <div>
       <label>请选择校区：</label>
       <select v-model="campusName">
@@ -25,7 +25,6 @@
         <option class="option1">学二十九</option>
         <option class="option1">雁北楼</option>
       </select>
-    <button @click="qqq">111</button>
       <label class="pull-right" style="margin: 20px 0;">
         输入搜索关键字：
         <input
@@ -62,41 +61,36 @@
       <div class="tableTop">
         <label style="display: inline-block;">
           <label>
-            <label>房间ID:</label>
-            <input type="text" v-model="roomId" />
-          </label>
-          <label>
             <label>所属校区:</label>
             <select v-model="campusName1" style="width: 120px;">
-              <option class="option1">西土城校区</option>
-              <option class="option1">沙河校区</option>
-              <option class="option1">宏福校区</option>
+              <option class="option1">北京邮电大学西土城校区</option>
+              <option class="option1">北京邮电大学沙河校区</option>
+              <option class="option1">北京邮电大学宏福校区</option>
             </select>
           </label>
-          <br />
           <label>
             <label>所属宿舍楼:</label>
             <select v-model="dormName1" style="width: 120px;">
-              <option class="option1">学一</option>
-              <option class="option1">学二</option>
-              <option class="option1">学三</option>
-              <option class="option1">学四</option>
-              <option class="option1">学五</option>
-              <option class="option1">学六</option>
-              <option class="option1">学七</option>
-              <option class="option1">学八</option>
-              <option class="option1">学九</option>
-              <option class="option1">学十</option>
-              <option class="option1">学十一</option>
-              <option class="option1">学十二</option>
-              <option class="option1">学二十九</option>
+              <option class="option1">学一楼</option>
+              <option class="option1">学二楼</option>
+              <option class="option1">学三楼</option>
+              <option class="option1">学四楼</option>
+              <option class="option1">学五楼</option>
+              <option class="option1">学六楼</option>
+              <option class="option1">学七楼</option>
+              <option class="option1">学八楼</option>
+              <option class="option1">学九楼</option>
+              <option class="option1">学十楼</option>
+              <option class="option1">学十一楼</option>
+              <option class="option1">学十二楼</option>
+              <option class="option1">学二十九楼</option>
               <option class="option1">雁北楼</option>
               <option class="option1">雁南楼</option>
             </select>
           </label>
           <label>
             <label>房间号:</label>
-            <input type="text" v-model="name" />
+            <input type="text" v-model="roomId" />
           </label>
           <label>
             <label>床位数:</label>
@@ -113,7 +107,27 @@
         </ul>
       </div>
     </div>
+    <div
+        class="modal fade"
+        id="reset"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">重置密码成功！</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
+
 </template>
 
 <script>
@@ -123,7 +137,7 @@ export default {
     return {
       roomId: "",
       dormId: "",
-      campusID: "",
+      campusId: "",
       name: "",
       campusName: "",
       campusName1: "",
@@ -157,15 +171,39 @@ export default {
         .catch(failResponse => {});
     },
     add() {
-      var index = this.list.findIndex(item => item.id == this.id);
+      if(this.campusName1=='北京邮电大学西土城校区'){
+        this.campusId=1
+      }
+      else if(this.campusName1=='北京邮电大学沙河校区'){
+        this.campusId = 2
+      }
+      else if(this.campusName1 =='北京邮电大学宏福校区'){
+        this.campusId =3
+      }
+      if(this.dormName1=='学一'){
+        this.dormId=1
+      }
+      else if(this.dormName1=='学二'){
+        this.dormId = 2
+      }
+      else if(this.dormName1 =='学三'){
+        this.dormId =3
+      }
+      else if(this.dormName1=='学九'){
+        this.dormId = 9
+      }
+      else if(this.dormName1 =='雁北楼'){
+        this.dormId =1
+      }
+      var index = this.list.findIndex(item => item.name == this.campusId+'-'+this.dormId+'-'+this.roomId);
       if (index == -1) {
         var some = {
           roomId: this.roomId,
-          name: this.campusID + "-" + this.dormId + "-" + this.roomId,
+          name: this.campusId + "-" + this.dormId + "-" + this.roomId,
           bedNum: this.bedNum,
           campusName: this.campusName1,
           dormName: this.dormName1
-        };
+        };  
         this.list.push(some);
       } else {
         alert("该ID已存在对应房间");

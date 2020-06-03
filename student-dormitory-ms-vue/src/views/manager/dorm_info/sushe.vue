@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addpadding">
     <div>
       <label>请选择校区：</label>
       <select v-model="campusName">
@@ -44,10 +44,6 @@
       <div class="tableTop">
         <label style="display: inline-block;">
           <label>
-            <label>宿舍楼ID:</label>
-            <input type="text" v-model="dormId" />
-          </label>
-          <label>
             <label>宿舍名称:</label>
             <input type="text" v-model="dormName" />
           </label>
@@ -58,15 +54,6 @@
               <option class="option1">沙河校区</option>
               <option class="option1">宏福校区</option>
             </select>
-          </label>
-          <br />
-          <label>
-            <label>房间数:</label>
-            <input type="text" v-model="roomNum" />
-          </label>
-          <label>
-            <label>床位数:</label>
-            <input type="text" v-model="bedNum" />
           </label>
         </label>
         <ul class="opreating">

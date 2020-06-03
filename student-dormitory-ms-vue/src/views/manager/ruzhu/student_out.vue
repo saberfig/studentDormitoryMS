@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addpadding">
     <div>
       <label class="pull-left" style="margin: 20px 0;">
         学号搜索：

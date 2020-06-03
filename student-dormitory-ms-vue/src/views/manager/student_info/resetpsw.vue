@@ -1,5 +1,5 @@
 <template>
-  <div class="resetpsw">
+  <div class="resetps addpadding">
     <div>
       <label>重置密码目标的学号：</label>
       <input type="text" v-model="id">

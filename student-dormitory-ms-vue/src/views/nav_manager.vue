@@ -1,19 +1,24 @@
 <template>
   <div>
-    <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar" role="navigation">
       <div class="navbar-header">
         <div class="logo">
           <h1>学生宿舍管理系统</h1>
         </div>
       </div>
+      <div class="pull-right nav-right">
+        <label>
+          欢迎回来
+          <i>{{id}}</i>
+        </label>
+        <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
+          <i class="iconfont icon-tuichudenglu"></i>退出
+        </a>
+      </div>
     </div>
     <div class="template-page-wrapper" id="box">
       <div class="navbar-collapse collapse templatemo-sidebar">
         <ul class="templatemo-sidebar-menu">
-          <li class="welcomeBack">
-            欢迎回来
-            <i>{{id}}</i>
-          </li>
           <li>
             <router-link to="index">
               <i class="iconfont icon-zhuye"></i>主页
@@ -75,11 +80,6 @@
               <i class="iconfont icon-xitongrizhi"></i>系统日志
             </a>
           </li>
-          <li>
-            <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
-              <i class="iconfont icon-tuichudenglu"></i>退出登录
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -134,38 +134,42 @@
 </template>
 
 <script>
-  export default {
-    name: 'nav_manager',
-    data () {
-      return {
-        id:this.COMMON.id,
-      }
+export default {
+  name: "nav_manager",
+  num:0,
+  data() {
+    return {
+      id: this.COMMON.id
+    };
+  },
+  methods: {
+    clearUser() {
+      this.COMMON.clearUser();
     },
-    methods:{
-      clearUser(){
-        this.COMMON.clearUser()
-      }
-    },
+  },
 
-    mounted:function(){
-      $('.templatemo-sidebar-menu li.sub a').click(function(){
-        if($(this).parent().hasClass('open')) {
-          console.log("aaaaa");
-          $(this).parent().removeClass('open');
-        } else {
-          console.log("bbbb");
-          $(this).parent().addClass('open');
-        }
-      });
-    }
+  mounted: function() {
+    $(".templatemo-sidebar-menu li.sub a").click(function() {
+      if (
+        $(this)
+          .parent()
+          .hasClass("open")
+      ) {
+        $(this)
+          .parent()
+          .removeClass("open");
+      } else {
+        $(this)
+          .parent()
+          .addClass("open");
+      }
+    });
   }
-
-
-
+};
 </script>
 
 <style scoped>
-  .temp{
-    margin-top: 15%;
-  }
+.temp {
+  margin-top: 15%;
+}
 </style>

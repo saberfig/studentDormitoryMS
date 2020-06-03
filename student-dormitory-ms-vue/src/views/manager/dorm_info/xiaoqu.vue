@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addpadding">
     <label class="pull-right" style="margin: 20px 0;">
       输入搜索关键字：
       <input
@@ -46,18 +46,6 @@
           <input type="text" v-model="name" />
         </label>
         <br>
-        <label>
-          <label>宿舍楼数:</label>
-          <input type="text" v-model="buildnum" />
-        </label>
-        <label>
-          <label>房间数:</label>
-          <input type="text" v-model="roomnum" />
-        </label>
-        <label>
-          <label>床位数:</label>
-          <input type="text" v-model="bednum" />
-        </label>
       </label>
       <ul class="opreating">
         <li>
@@ -65,7 +53,6 @@
         </li>
         <li>
           <button type="reset" class="btn btn-success" @click="modify">修改</button>
-          <button type="reset" class="btn btn-success" @click="get_campus_info">test</button>
         </li>
       </ul>
     </div>
