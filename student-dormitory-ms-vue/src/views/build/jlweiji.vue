@@ -40,7 +40,8 @@ export default {
           description: this.form.description
         }).then(resp=> {
         if (resp && resp.status === 200) {
-          this.$emit('onSubmit')
+          this.$emit('onSubmit');
+          alert("发布成功");
         }
     })
   }

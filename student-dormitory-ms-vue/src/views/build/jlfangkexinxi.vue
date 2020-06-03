@@ -39,7 +39,8 @@ export default {
           studentId: this.form.studentId
         }).then(resp=> {
         if (resp && resp.status === 200) {
-          this.$emit('onSubmit')
+          this.$emit('onSubmit');
+          alert("发布成功");
         }
     })
    },
