@@ -10,13 +10,13 @@ public class CampusInfo {
     @Id
     private String id;
     private String name;
-    private int dormNum;
-    private int roomNum;
-    private int bedNum;
+    private Integer dormNum;
+    private Integer roomNum;
+    private Integer bedNum;
 
     public CampusInfo(){}
 
-    public CampusInfo(String id,String name,int dormNum,int roomNum,int bedNum){
+    public CampusInfo(String id,String name,Integer dormNum,Integer roomNum,Integer bedNum){
         this.id=id;
         this.name=name;
         this.dormNum=dormNum;
@@ -41,6 +41,9 @@ public class CampusInfo {
     }
 
     public int getDormNum() {
+        if(this.dormNum==null){
+            this.dormNum=0;
+        }
         return dormNum;
     }
 
@@ -49,6 +52,9 @@ public class CampusInfo {
     }
 
     public int getRoomNum() {
+        if(this.roomNum==null){
+            this.roomNum=0;
+        }
         return roomNum;
     }
 
@@ -57,6 +63,9 @@ public class CampusInfo {
     }
 
     public int getBedNum() {
+        if(this.bedNum==null){
+            this.bedNum=0;
+        }
         return bedNum;
     }
 

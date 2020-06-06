@@ -8,7 +8,7 @@
         v-model="keywords"
       />
     </label>
-
+  
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
@@ -75,6 +75,7 @@ export default {
   },
   mounted() {
     this.get_campus_info();
+    
   },
   methods: {
     get_campus_info(){
@@ -82,7 +83,6 @@ export default {
         .get("/manager/get_campus_info")
         .then(successResponse => {
           this.list=successResponse.data;
-          console.log(this.list);
         })
         .catch(failResponse => {});
     },
@@ -130,6 +130,9 @@ export default {
           return item;
         }
       });
+    },
+    test(){
+      console.log(this.list)
     }
   }
 };

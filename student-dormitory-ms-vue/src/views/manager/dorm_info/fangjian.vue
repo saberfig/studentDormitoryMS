@@ -7,7 +7,7 @@
         <option class="option1">沙河校区</option>
         <option class="option1">宏福校区</option>
       </select>
-
+<button @click="qqq">test</button>
       <label>请选择宿舍楼：</label>
       <select v-model="dormName">
         <option class="option1">学一</option>
@@ -150,15 +150,14 @@ export default {
   },
   mounted() {
     this.get_room_info();
-    console.log(this.list)
   },
   methods: {
     get_room_info() {
       this.$axios
         .get("/manager/get_room_info")
         .then(successResponse => {
-          this.list = successResponse.data;
-          var a;
+          this.list = successResponse.data
+          var a
           for (a in this.list) {
             this.list[a].name =
               this.list[a].campusId+

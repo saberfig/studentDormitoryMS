@@ -94,7 +94,10 @@ export default {
         .get("/manager/get_dorm_info")
         .then(successResponse => {
           this.list=successResponse.data;
-          console.log(this.list);
+          var a
+          for(a in this.list){
+            this.list[a].id=this.list[a].campusName+this.list[a].id
+          }
         })
         .catch(failResponse => {});
     },
