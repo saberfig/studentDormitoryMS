@@ -61,6 +61,7 @@ public class RoomInfo {
     }
 
     public void setRoomId(String roomId) {
+
         this.roomId = roomId;
     }
 

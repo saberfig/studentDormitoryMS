@@ -43,7 +43,6 @@ public class NoticeNormController {
         //System.out.println(noticeNorm.getStudentId());
         noticeNormService.add(noticeNorm);
     return noticeNorm;
-
     }
 
 

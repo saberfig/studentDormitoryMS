@@ -177,11 +177,6 @@ td{
 .tableTop label label label{
 	width: 75px;
 }
-.tableTop input{
-	width: 120px;
-	border: #ccc solid 1px;
-	border-radius: 4px;
-}
 .templatemo-sidebar .templatemo-sidebar-menu>li>a>i {
 	font-size: 16px;
 	top: 2px;

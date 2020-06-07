@@ -52,7 +52,8 @@
             </a>
             <ul class="templatemo-submenu">
               <li>
-                <router-link to="resetpsw">重置密码</router-link>
+                <!-- <router-link to="resetpsw">重置密码</router-link> -->
+                <a @click="dialogFormVisible = true">重置密码</a>
               </li>
             </ul>
           </li>
@@ -110,25 +111,16 @@
           </div>
         </div>
       </div>
-      <div
-        class="modal fade"
-        id="reset"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="myModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">重置密码成功！</h4>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
-            </div>
-          </div>
+      <el-dialog title="添加宿舍楼" :visible.sync="dialogFormVisible">
+        <el-form class="dialog">
+          <span>重置密码目标的学号:</span>
+          <input type="text" autocomplete="off" v-model="studentId" class="el-input__inner">
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="resetpsw">确 定</el-button>
         </div>
-      </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -139,13 +131,27 @@ export default {
   num:0,
   data() {
     return {
-      id: this.COMMON.id
+      id: this.COMMON.id,
+      studentId:"",
+      dialogFormVisible:false,
     };
   },
   methods: {
     clearUser() {
       this.COMMON.clearUser();
     },
+    resetpsw(){
+        this.$axios
+          .post("/manager/reset_psw",{id:this.studentId})
+          .then(successResponse => {
+            if (successResponse != null) {
+              alert("重置成功"+" 学号："+successResponse.data.id+" 密码："+successResponse.data.psw);
+            }else{
+              alert("重置失败");
+            }
+          })
+          .catch(failResponse => {});
+      },
   },
 
   mounted: function() {

@@ -1,21 +1,10 @@
 <template>
   <div class="addpadding">
     <div>
-      <label>请选择校区：</label>
-      <select v-model="campusName">
-        <option class="option1">西土城校区</option>
-        <option class="option1">沙河校区</option>
-        <option class="option1">宏福校区</option>
-      </select>
-
-      <label class="pull-right" style="margin: 20px 0;">
-        输入搜索关键字：
-        <input
-          type="text"
-          style="border: #ccc solid 1px;border-radius: 4px;"
-          v-model="keywords"
-        />
-      </label>
+      <div class="block" style="margin-bottom:20px">
+        <span class="demonstration">请选择校区：</span>
+        <el-cascader v-model="campusName" :options="options"></el-cascader>
+      </div>
 
       <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -35,6 +24,7 @@
             <td>{{ item.bedNum }}</td>
             <td>
               <li style="list-style: none;">
+                <button type="reset" class="btn btn-success" @click="modify">修改</button>
                 <button type="reset" class="btn btn-danger" @click="del(item.dormId)">删除</button>
               </li>
             </td>
@@ -42,29 +32,22 @@
         </tbody>
       </table>
       <div class="tableTop">
-        <label style="display: inline-block;">
-          <label>
-            <label>宿舍名称:</label>
-            <input type="text" v-model="dormName" />
-          </label>
-          <label>
-            <label>所属校区:</label>
-            <select v-model="campusName1" style="width: 120px;">
-              <option class="option1">西土城校区</option>
-              <option class="option1">沙河校区</option>
-              <option class="option1">宏福校区</option>
-            </select>
-          </label>
-        </label>
-        <ul class="opreating">
-          <li>
-            <button type="reset" class="btn btn-info" @click="add">添加</button>
-          </li>
-          <li>
-            <button type="reset" class="btn btn-success" @click="modify">修改</button>
-          </li>
-        </ul>
+      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加宿舍楼</el-button>
+      <el-dialog title="添加宿舍楼" :visible.sync="dialogFormVisible">
+        <el-form class="dialog">
+          <span>宿舍楼名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <input type="text" autocomplete="off" v-model="adddormname" class="el-input__inner width">
+          <div class="block">
+        <span class="demonstration">请选择所属校区：</span>
+        <el-cascader v-model="addcampusname" :options="options" size="medium"></el-cascader>
       </div>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="add">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
     </div>
   </div>
 </template>
@@ -78,43 +61,55 @@ export default {
       dormName: "",
       campusName: "",
       campusName1: "",
+      addcampusname:"",
+      adddormname:"",
       roomNum: "",
       bedNum: "",
       keywords: "",
-      list: [
+      list: [],
+      dialogFormVisible:false,
+      options: [
+        
       ]
     };
   },
-  mounted(){
-    this.get_dorm_info()
+  mounted() {
+    this.get_dorm_info(); 
   },
   methods: {
-    get_dorm_info(){
+    get_dorm_info() {
       this.$axios
         .get("/manager/get_dorm_info")
         .then(successResponse => {
-          this.list=successResponse.data;
-          var a
-          for(a in this.list){
-            this.list[a].id=this.list[a].campusName+this.list[a].id
+          this.list = successResponse.data;
+          var a;
+          for (a in this.list) {
+            this.list[a].id = this.list[a].campusName + this.list[a].id;
+          }
+          var name = [];
+          var b;
+          for (b in this.list) {
+            if (name.indexOf(this.list[b].campusName) == -1) {
+              name.push(this.list[b].campusName)
+            }
+          }
+          var c;
+          for (c in name) {          
+            this.options.push({ value: name[c], label: name[c] });
           }
         })
         .catch(failResponse => {});
     },
     add() {
-      var index = this.list.findIndex(item => item.id == this.id);
-      if (index == -1) {
-        var some = {
-          dormId: this.dormId,
-          dormName: this.dormName,
-          roomNum: this.roomNum,
-          bedNum: this.bedNum,
-          campusName: this.campusName1
-        };
-        this.list.push(some);
-      } else {
-        alert("该ID已存在对应宿舍");
+      if(this.adddormname==""){
+        alert("宿舍楼名不可为空")
+        return
       }
+      if(this.addcampusname==""){
+        alert("所属校区不可为空")
+        return
+      }
+      this.dialogFormVisible = false;
     },
     del(dormId) {
       var index = this.list.findIndex(item => {
@@ -152,4 +147,9 @@ export default {
 </script>
 
 <style scoped>
+.width{
+  width: 221.4px;
+  margin-bottom:10px;
+  height: 36px;
+}
 </style>

@@ -8,7 +8,6 @@
         v-model="keywords"
       />
     </label>
-  
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
@@ -29,6 +28,7 @@
           <td>{{ item.bedNum }}</td>
           <td>
             <li style="list-style: none;">
+              <button type="reset" class="btn btn-success" @click="modify">修改</button>
               <button type="reset" class="btn btn-danger" @click="del(item.id)">删除</button>
             </li>
           </td>
@@ -36,25 +36,17 @@
       </tbody>
     </table>
     <div class="tableTop">
-      <label style="display: inline-block;">
-        <label>
-          <label>校区ID:</label>
-          <input type="text" v-model="id" />
-        </label>
-        <label>
-          <label>校区名称:</label>
-          <input type="text" v-model="name" />
-        </label>
-        <br>
-      </label>
-      <ul class="opreating">
-        <li>
-          <button type="reset" class="btn btn-info" @click="add">添加</button>
-        </li>
-        <li>
-          <button type="reset" class="btn btn-success" @click="modify">修改</button>
-        </li>
-      </ul>
+      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>
+      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">
+        <el-form class="dialog">
+          <label >校区名称:</label>
+          <input type="text" v-model="addname">
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="add">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -70,37 +62,40 @@ export default {
       roomnum: "",
       bednum: "",
       keywords: "",
+      addname: "",
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      formLabelWidth: "100px",
       list: []
     };
   },
   mounted() {
     this.get_campus_info();
-    
   },
   methods: {
-    get_campus_info(){
+    get_campus_info() {
       this.$axios
         .get("/manager/get_campus_info")
         .then(successResponse => {
-          this.list=successResponse.data;
+          this.list = successResponse.data;
         })
         .catch(failResponse => {});
     },
-
     add() {
-      var index = this.list.findIndex(item => item.id == this.id);
-      if (index == -1) {
-        var some = {
-          id: this.id,
-          name: this.name,
-          buildnum: this.buildnum,
-          roomnum: this.roomnum,
-          bednum: this.bednum
-        };
-        this.list.push(some);
+      if (this.addname === "") {
+        alert("校区名不能为空!");
       } else {
-        alert("该ID已存在对应校区");
+        this.$axios
+          .post("/manager/add_campus", {
+            id: this.list[this.list.length-1].id+1,
+            name: this.addname
+          })
+          .then(successResponse => {
+            this.get_campus_info();
+          })
+          .catch(failResponse => {});
       }
+      this.dialogFormVisible = false;
     },
     del(id) {
       var index = this.list.findIndex(item => {
@@ -131,12 +126,25 @@ export default {
         }
       });
     },
-    test(){
-      console.log(this.list)
+    test() {
+      console.log(this.list.length);
     }
   }
 };
 </script>
 
 <style scoped>
+.dialog{
+  text-align: center;
+  margin: auto;
+}
+.dialog label{
+  font-weight: 400;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.dialog input{
+  width: 200px;
+  height: 23px;
+}
 </style>
