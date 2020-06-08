@@ -57,7 +57,7 @@
 				</li>
 				<li>
 					<a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
-						<i class="iconfont icon-tuichudenglu"></i>退出登录
+
 					</a>
 				</li>
 			</ul>
