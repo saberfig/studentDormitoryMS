@@ -39,7 +39,7 @@
           <input type="text" autocomplete="off" v-model="adddormname" class="el-input__inner width">
           <div class="block">
         <span class="demonstration">请选择所属校区：</span>
-        <el-cascader v-model="addcampusname" :options="options" size="medium"></el-cascader>
+        <el-cascader v-model="addcampusname" :options="options1" size="medium"></el-cascader>
       </div>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -67,10 +67,10 @@ export default {
       bedNum: "",
       keywords: "",
       list: [],
+      campusList:[],
       dialogFormVisible:false,
-      options: [
-        
-      ]
+      options: [],
+      options1:[],
     };
   },
   mounted() {
@@ -81,6 +81,7 @@ export default {
       this.$axios
         .get("/manager/get_dorm_info")
         .then(successResponse => {
+          this.get_campus_info()
           this.list = successResponse.data;
           var a;
           for (a in this.list) {
@@ -100,6 +101,26 @@ export default {
         })
         .catch(failResponse => {});
     },
+    get_campus_info() {
+      this.$axios
+        .get("/manager/get_campus_info")
+        .then(successResponse => {
+          this.campusList = successResponse.data;
+          var name = [];
+          var b;
+          for (b in this.campusList) {
+            if (name.indexOf(this.campusList[b].name) == -1) {
+              name.push(this.campusList[b].name)
+            }
+          }
+          var c;
+          for (c in name) {          
+            this.options1.push({ value: name[c], label: name[c] });
+          }
+        })
+        .catch(failResponse => {});
+    },
+
     add() {
       if(this.adddormname==""){
         alert("宿舍楼名不可为空")

@@ -43,7 +43,7 @@
             />
             <div class="block">
         <span class="demonstration">请选择所属位置：</span>
-        <el-cascader v-model="addroomplace" :options="options"></el-cascader>
+        <el-cascader v-model="addroomplace" :options="options1"></el-cascader>
       </div>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -92,11 +92,13 @@ export default {
       keywords: "",
       dialogFormVisible: false,
       list: [],
+      campusList:[],
+      dormList:[],
       options: [],
+      options1:[],
       filter: ["",""],
       addroomId:"",
       addroomplace:"",
-      test:[{value:1},{value:1},{value:1},{value:1},{value:2},{value:2},{value:3},]
     };
   },
   mounted() {
@@ -107,6 +109,8 @@ export default {
       this.$axios
         .get("/manager/get_room_info")
         .then(successResponse => {
+          this.get_campus_info()
+          this.get_dorm_info()
           this.list = successResponse.data;
           var a;
           for (a in this.list) {
@@ -150,6 +154,65 @@ export default {
               }
               else{
                 delete this.options[x].children[y]
+              }
+            }
+          }
+        })
+        .catch(failResponse => {});
+    },
+    get_campus_info() {
+      this.$axios
+        .get("/manager/get_campus_info")
+        .then(successResponse => {
+          this.campusList = successResponse.data;
+          var name = [];
+          var b;
+          for (b in this.campusList) {
+            if (name.indexOf(this.campusList[b].name) == -1) {
+              name.push(this.campusList[b].name)
+            }
+          }
+          var c;
+          for (c in name) {          
+            this.options1.push({ value: name[c], label: name[c],children:[] });
+          }
+        })
+        .catch(failResponse => {});
+    },
+    get_dorm_info() {
+      this.$axios
+        .get("/manager/get_dorm_info")
+        .then(successResponse => {
+          this.dormList = successResponse.data;
+          var name = [];
+          var b;
+          for (b in this.campusList) {
+            if (name.indexOf(this.campusList[b].name) == -1) {
+              name.push(this.campusList[b].name)
+            }
+          }
+          var d;
+          for (d in this.dormList) {
+            var e;
+            for (e in name) {
+              if (name[e] == this.dormList[d].campusName) {
+                this.options1[e].children.push({
+                  value: this.dormList[d].dormName,
+                  label: this.dormList[d].dormName
+                });
+              }
+            }
+          }
+          var x
+          for (x in this.options1) {
+            var y
+            var unique = []
+            for(y in this.options1[x].children){ 
+              if(unique.indexOf(this.options1[x].children[y].value)==-1){
+                unique.push(this.options1[x].children[y].value)
+              }
+              else{
+                delete this.options1[x].children[y]
               }
             }
           }
