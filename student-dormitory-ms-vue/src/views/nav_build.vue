@@ -1,12 +1,21 @@
 <template>
   <div>
-      <div class="navbar navbar-inverse" role="navigation">
-		<div class="navbar-header">
-			<div class="logo">
-				<h1>学生宿舍管理系统</h1>
-			</div>
-		</div>
-	</div>
+     <div class="navbar" role="navigation">
+      <div class="navbar-header">
+        <div class="logo">
+          <h1>学生宿舍管理系统</h1>
+        </div>
+      </div>
+      <div class="pull-right nav-right">
+        <label>
+          欢迎回来
+          <i>{{id}}</i>
+        </label>
+        <a href="javascript:;" @click="dialogFormVisible1=true">
+          <i class="iconfont icon-tuichudenglu"></i>退出
+        </a>
+      </div>
+    </div>
 	<div class="template-page-wrapper" id="box">
 		<div class="navbar-collapse collapse templatemo-sidebar">
 			<ul class="templatemo-sidebar-menu">
@@ -60,28 +69,15 @@
         </div>
       </div>
       <!-- Modal -->
-      <div
-        class="modal fade"
-        id="confirmModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="myModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">确认退出？</h4>
-            </div>
-            <div class="modal-footer">
-              <a href="/DormManagerLogin" class="btn btn-primary" @click="clearUser">Yes</a>
-
-              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-              <el-button icon="el-icon-close" circle></el-button>
-            </div>
-          </div>
+      <el-dialog title="" :visible.sync="dialogFormVisible1" width="20%">
+        <el-form class="dialog">
+          <span style="margin-left:80px;font-size:20px;font-weight:500">退出登录？</span>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+          <el-button type="primary" @click="clearUser"><router-link to="/DormManagerLogin" style="color:white">是</router-link></el-button>
         </div>
-      </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -91,7 +87,8 @@ export default {
   name: "nav_build",
   data() {
     return {
-      id: this.COMMON.id
+      id: this.COMMON.id,
+      dialogFormVisible1:false
     };
   },
   methods: {
