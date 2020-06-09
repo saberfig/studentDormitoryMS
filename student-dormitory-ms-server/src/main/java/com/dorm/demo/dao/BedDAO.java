@@ -22,5 +22,14 @@ public interface BedDAO extends JpaRepository<Bed, Integer> {
     @Query(value = "delete from Bed where studentId=:studentId")
     void deleteByStudentId(@Param("studentId") String studentId);
 
-    Bed findByStudentId(String studentId);
+   Bed findByStudentId(String studentId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update Bed set studentId=:studentId where id=:id and roomId=:roomId and roomDormId=:roomDormId and roomDormCampusId=:roomDormCampusId")
+    void updateBedByStudentId(@Param("studentId") String studentId,
+                              @Param("roomId") String roomId,
+                              @Param("roomDormId") String roomDormId,
+                              @Param("roomDormCampusId") String roomDormCampusId,
+                              @Param("id") String id);
 }

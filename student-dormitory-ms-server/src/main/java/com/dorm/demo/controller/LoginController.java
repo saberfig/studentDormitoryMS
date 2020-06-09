@@ -96,10 +96,6 @@ public class LoginController {
             System.out.println("err");
             return new Result(400);//返回不同的结果
         }
-
-
-
-
     }
 }
 

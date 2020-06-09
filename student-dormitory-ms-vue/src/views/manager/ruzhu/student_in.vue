@@ -31,7 +31,10 @@
               <button type="reset" class="btn btn-info" @click="add">添加</button>
             </li>
             <li>
-              <button type="reset" class="btn btn-success" @click="modify">导入本地文件</button>
+                <input type="file" style="display: inline-block" @change="importExcel($event.target)"></input>
+            </li>
+            <li>
+                <button type="reset" class="btn btn-success" @click="upload">上传</button>
             </li>
           </ul>
         </div>
@@ -72,6 +75,7 @@
 </template>
 
 <script>
+  import XLSX from 'xlsx';
     export default {
         name: "student_in",
       data() {
@@ -82,7 +86,8 @@
           room: "",
           dorm: "",
           campus: "",
-          list: []
+          list: [],
+          xlsxJson: []
         };
       },
       mounted() {
@@ -123,6 +128,59 @@
         },
         modify() {
           //
+        },
+        importExcel(files) {
+          let file = files.files[0] // 使用传统的input方法需要加上这一步
+          const types = file.name.split('.')[1]
+          const fileType = ['xlsx', 'xlc', 'xlm', 'xls', 'xlt', 'xlw', 'csv'].some(item => item === types)
+          if (!fileType) {
+            alert('格式错误！请重新选择')
+            return
+          }
+          this.file2Xce(file).then(tabJson => {
+            if (tabJson && tabJson.length > 0) {
+              this.xlsxJson = tabJson
+              console.log(this.xlsxJson[0].sheet);
+            }
+          })
+        },
+        file2Xce(file) {
+          return new Promise(function(resolve, reject) {
+            const reader = new FileReader()
+            reader.onload = function(e) {
+              const data = e.target.result
+              this.wb = XLSX.read(data, {
+                type: 'binary'
+              })
+              const result = []
+              this.wb.SheetNames.forEach((sheetName) => {
+                result.push({
+                  sheetName: sheetName,
+                  sheet: XLSX.utils.sheet_to_json(this.wb.Sheets[sheetName])
+                })
+              })
+              resolve(result)
+            }
+            //reader.readAsBinaryString(file.raw)
+            reader.readAsBinaryString(file) // 传统input方法
+          })
+        },
+        upload(){
+          this.$axios
+            .post("/manager/add_beds",this.xlsxJson[0].sheet)
+            .then(successResponse => {
+              if (successResponse.data.code === 200) {
+                alert("添加成功");
+              }
+              if (successResponse.data.code === 400) {
+                alert("添加失败");
+              }
+              if (successResponse.data.code === 401) {
+                alert("学生已存在");
+              }
+              this.get_student_bed();
+            })
+            .catch(failResponse => {});
         },
       }
     }

@@ -28,4 +28,11 @@ public class BedService {
     public void addBed(Bed bed){
         bedDAO.save(bed);
     }
+
+    public void dormExchange(String studentId1, String studentId2){
+        Bed bed1=bedDAO.findByStudentId(studentId1);
+        Bed bed2=bedDAO.findByStudentId(studentId2);
+        bedDAO.updateBedByStudentId(bed2.getStudentId(),bed1.getRoomId(),bed1.getRoomDormId(),bed1.getRoomDormCampusId(),bed1.getId());
+        bedDAO.updateBedByStudentId(bed1.getStudentId(),bed2.getRoomId(),bed2.getRoomDormId(),bed2.getRoomDormCampusId(),bed2.getId());
+    }
 }
