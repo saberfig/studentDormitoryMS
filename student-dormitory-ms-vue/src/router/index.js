@@ -21,17 +21,22 @@ import student_out from "../views/manager/ruzhu/student_out";
 import chuangwei_build from "../views/build/dorm_info/chuangwei_build"
 import fangjian_build from "../views/build/dorm_info/fangjian_build"
 import fangkexinxi from "../views/build/fangkexinxi"
+import jlfangkexinxi from "../views/build/jlfangkexinxi"
 import index_build from "../views/build/index_build"
 import jiluweiji from "../views/build/jiluweiji"
+import jlweiji from "../views/build/jlweiji"
 import xiaotz from "../views/build/xiaotz"
 import xuetz from "../views/build/xuetz"
-
+import fbxuetz from "../views/build/fbxuetz"
+//学生页面部分
 import notification from "../views/student/notification";
 import info from "../views/student/info";
+import changepsw from "../views/student/changepsw";
 //登陆页面部分
 import StudentLogin from "../views/logins/StudentLogin";
 import DormManagerLogin from "../views/logins/DormManagerLogin";
 import SuperManagerLogin from "../views/logins/SuperManagerLogin";
+import NewLogin from "../views/logins/NewLogin";
 
 Vue.use(Router)
 
@@ -162,8 +167,21 @@ export default new Router({
             requireAuth: true
           }
         },
+        {
+          path: 'jlfangkexinxi',
+          component: jlfangkexinxi,
+          meta: {
+            requireAuth: true
+          }
+        },
         { path: 'jiluweiji',
           component: jiluweiji,
+          meta: {
+            requireAuth: true
+          }
+        },
+        { path: 'jlweiji',
+          component: jlweiji,
           meta: {
             requireAuth: true
           }
@@ -176,6 +194,12 @@ export default new Router({
         },
         { path: 'xuetz',
           component: xuetz,
+          meta: {
+            requireAuth: true
+          }
+        },
+        { path: 'fbxuetz',
+          component: fbxuetz,
           meta: {
             requireAuth: true
           }
@@ -203,6 +227,13 @@ export default new Router({
             requireAuth: true
           },
         },
+        {
+          path: 'changepsw',
+          component: changepsw,
+          meta: {
+            requireAuth: true
+          },
+        },
 
       ]
     },
@@ -223,6 +254,12 @@ export default new Router({
       path: '/SuperManagerLogin',
       name: 'SuperManagerLogin',
       component: SuperManagerLogin,
+    },
+    //三用户结合登陆部分页面
+    {
+      path: '/NewLogin',
+      name: 'NewLogin',
+      component: NewLogin,
     },
   ],
   mode:'history'

@@ -18,7 +18,7 @@
           <div class="font">密码</div>
         </div>
         <div class="row">
-          <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
+          <el-input v-model="loginForm.password" placeholder="请输入密码" type="password"></el-input>
         </div>
         <div class="row" >
           <div id="loginbutton" align="center">
@@ -66,7 +66,8 @@
               this.$router.replace({path: '/nav_student/info'})//切换页面
             }
             if (successResponse.data.code === 400) {
-              this.$router.replace({path: '/StudentLogin'})
+              //this.$router.replace({path: '/StudentLogin'})
+              this.$alert("用户名或密码错误！")
             }
           })
           //不成功响应的情况？

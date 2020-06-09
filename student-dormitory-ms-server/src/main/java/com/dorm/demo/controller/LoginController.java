@@ -48,10 +48,6 @@ public class LoginController {
         status = HtmlUtils.htmlEscape(status);
         psw = HtmlUtils.htmlEscape(psw);
 
-
-
-
-
         /*
         使用数据库验证的逻辑其实也类似，大概是如下过程：
         第一步，获得前端发送过来的用户名和密码信息

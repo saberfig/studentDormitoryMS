@@ -75,13 +75,12 @@ public class StudentService {
         return studentDAO.getStudentName(id);
     }
 
-    /*
-    public StudentInfo getStudentInfoById(String id){
-        List<Object> queryResult = studentDAO.getStudentInfo(id);
-
+    public void changePsw(String id, String newpsw){
+        studentDAO.changeStudentByPsw(id, newpsw);
 
     }
-    */
+
+
     public StudentInfo getStudentInfoById(String id){
         List<StudentInfo> queryResult = studentDAO.getStudentInfo(id);
         StudentInfo studentInfo=queryResult.get(0);
@@ -131,7 +130,6 @@ public class StudentService {
         System.out.println("处于service层，查找结束");
         System.out.println(studentNotice.get(0));
         //Collections.sort(queryResult, new DateComparator());
-
 
         return studentNotice;
     }

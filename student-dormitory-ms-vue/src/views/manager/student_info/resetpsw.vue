@@ -1,10 +1,10 @@
 <template>
-  <div class="resetpsw">
+  <div class="resetps addpadding">
     <div>
       <label>重置密码目标的学号：</label>
       <input type="text" v-model="id">
     </div>
-    <button type="reset" class="btn btn-success" v-on:click="resetpsw">修改</button>
+    <button type="reset" class="btn btn-success" @click="resetpsw">修改</button>
   </div>
 </template>
 

@@ -85,6 +85,7 @@ public class VisitorVinfo {
         this.studentId = studentId;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

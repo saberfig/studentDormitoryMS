@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addpadding">
     <div>
       <div class="tableTop">
         <label style="display: inline-block;">

@@ -1,6 +1,7 @@
 package com.dorm.demo.service;
 
 import com.dorm.demo.dao.OffenceDao;
+import com.dorm.demo.pojo.OffenInfo;
 import com.dorm.demo.pojo.Offence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,9 @@ public class OffenceService {
     public void add(Offence offence){
 
         offenceDao.save(offence);
+    }
+
+    public List<OffenInfo> findInfo(String dmid){
+        return offenceDao.getOffenInfo(dmid);
     }
 }

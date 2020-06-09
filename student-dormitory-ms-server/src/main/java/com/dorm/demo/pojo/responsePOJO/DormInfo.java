@@ -12,12 +12,12 @@ public class DormInfo {
     private String dormName;
     private String campusName;
     private String dormId;
-    private int bedNum;
-    private int roomNum;
+    private Integer bedNum;
+    private Integer roomNum;
 
     public DormInfo(){}
 
-    public DormInfo(String dormName,String campusName,String dormId,int bedNum,int roomNum){
+    public DormInfo(String dormName,String campusName,String dormId,Integer bedNum,Integer roomNum){
         this.dormId=dormId;
         this.dormName=dormName;
         this.campusName=campusName;
@@ -50,6 +50,9 @@ public class DormInfo {
     }
 
     public int getRoomNum() {
+        if(this.roomNum==null){
+            this.roomNum=0;
+        }
         return roomNum;
     }
 
@@ -58,6 +61,9 @@ public class DormInfo {
     }
 
     public int getBedNum() {
+        if(this.bedNum==null){
+            this.bedNum=0;
+        }
         return bedNum;
     }
 

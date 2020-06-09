@@ -8,18 +8,16 @@
         <thead>
           <tr>
             <th>校区</th>
-            <th>寝室楼号</th>
-            <th>层数</th>
-            <th>寝室个数</th>
+            <th>寝室楼</th>
             <th>学生人数</th>
+            <th>管理员姓名</th>
           </tr>
         </thead>
         <tr>
-          <td>西土城校区</td>
-          <td>9号公寓</td>
-          <td>5</td>
-          <td>77</td>
-          <td>308人</td>
+          <td>{{name.campusName}}</td>
+          <td>{{name.dormName}}</td>
+          <td>{{info.length}}</td>
+          <td>{{name.maDormName}}</td>
         </tr>
       </table>
     </div>
@@ -28,7 +26,36 @@
 
 <script>
 export default {
-  name: "index_build"
+  name: "index_build",
+  data() {
+    return{
+      name:
+      {
+      dormName:'',
+      campusName:'',
+      maDormName:'',
+      },
+      info:[
+      {
+      dormName:'',
+      campusName:'',
+      maDormName:'',
+      }
+      ]
+    }
+  },
+  mounted: function() {
+    this.$axios
+      .post("/nav_build/index", {
+        id: this.COMMON.id,
+              })
+              .then(successResponse => {
+                this.info = successResponse.data
+                this.name = this.info[0]
+              })
+              .catch(failResponse  => {
+              });
+  }
 };
 </script>
 
