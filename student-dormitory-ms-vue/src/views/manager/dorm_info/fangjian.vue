@@ -23,7 +23,7 @@
             <td>{{ item.bedNum }}</td>
             <td>
               <li style="list-style: none;">
-                <button type="reset" class="btn btn-success" @click="modify">修改</button>
+                <!-- <button type="reset" class="btn btn-success" @click="modify">修改</button> -->
                 <button type="reset" class="btn btn-danger" @click="del(item.name)">删除</button>
               </li>
             </td>
