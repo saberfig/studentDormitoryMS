@@ -13,17 +13,6 @@ public class Bed {
     private String roomDormCampusId;
     private String studentId;
 
-    public Bed(){
-    }
-
-    public Bed(String id,String roomId,String roomDormId,String roomDormCampusId,String studentId){
-        this.id=id;
-        this.roomId=roomId;
-        this.roomDormId=roomDormId;
-        this.roomDormCampusId=roomDormCampusId;
-        this.studentId=studentId;
-    }
-
     @Id
     @Column(name = "id", nullable = false, length = 10)
     public String getId() {

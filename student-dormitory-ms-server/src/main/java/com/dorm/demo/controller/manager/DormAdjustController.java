@@ -40,11 +40,7 @@ public class DormAdjustController {
     public Result addBed(@RequestBody Bed requestBed){
         Bed bed=bedService.findByStudentId(requestBed.getStudentId());
         if(null==bed){
-            try{
-                bedService.addBed(requestBed);
-            }catch (Exception e){
-                return new Result(400);//添加失败
-            }
+            bedService.addBed(requestBed);
             bed=bedService.findByStudentId(requestBed.getStudentId());
             if(null==bed){
                 return new Result(400);//添加失败
@@ -52,37 +48,5 @@ public class DormAdjustController {
         }else{
             return new Result(401);//学生已存在
         }
-    }
-
-    @CrossOrigin
-    @PostMapping(value = "api/manager/add_beds")
-    @ResponseBody
-    public Result addBeds(@RequestBody List<Bed> requestBeds){
-        for(int i=0;i<requestBeds.size();i++){
-            System.out.println(requestBeds.get(i).getRoomDormCampusId());
-            System.out.println(requestBeds.get(i).getRoomId());
-            System.out.println(requestBeds.get(i).getRoomDormId());
-            System.out.println(requestBeds.get(i).getStudentId());
-            System.out.println("111111111111111111111");
-        }
-        for(int i=0;i<requestBeds.size();i++){
-            Bed bed=bedService.findByStudentId(requestBeds.get(i).getStudentId());
-            if(null==bed){
-                bedService.addBed(requestBeds.get(i));
-            }else{
-                return new Result(401);//学生已存在
-            }
-        }
-        return new Result(200);
-    }
-
-    @CrossOrigin
-    @PostMapping(value = "api/manager/dorm_exchange")
-    @ResponseBody
-    public Result dormExchange(@RequestBody List<Bed> requestBeds){
-        String id1=requestBeds.get(0).getStudentId();
-        String id2=requestBeds.get(1).getStudentId();
-        bedService.dormExchange(id1,id2);
-        return new Result(400);
     }
 }
