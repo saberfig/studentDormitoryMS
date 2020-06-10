@@ -134,7 +134,6 @@
     background-image:url(https://www.bupt.edu.cn/images/18/05/09/1mu9mjraxf/xyfg3.jpg);
   }
   .box1{
-    //border: 1px solid #00ee00;
     height: 300px;
     position:relative;
   }
