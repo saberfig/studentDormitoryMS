@@ -24,7 +24,7 @@
             <td>{{ item.bedNum }}</td>
             <td>
               <li style="list-style: none;">
-                <button type="reset" class="btn btn-success" @click="modify">修改</button>
+                <button type="reset" class="btn btn-success" @click="modify(item.dormId)">修改</button>
                 <button type="reset" class="btn btn-danger" @click="del(item.dormId)">删除</button>
               </li>
             </td>
@@ -45,6 +45,16 @@
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
           <el-button type="primary" @click="add">确 定</el-button>
+        </div>
+      </el-dialog>
+      <el-dialog title="修改宿舍楼信息" :visible.sync="dialogFormVisible1">
+        <el-form class="dialog">
+          <label >宿舍楼名称:</label>
+          <input type="text" v-model="modifyname">
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+          <el-button type="primary" @click="modifySub">确 定</el-button>
         </div>
       </el-dialog>
     </div>
@@ -69,6 +79,8 @@ export default {
       list: [],
       campusList:[],
       dialogFormVisible:false,
+      dialogFormVisible1:false,
+      modifyname:"",
       options: [],
       options1:[],
     };
@@ -140,16 +152,19 @@ export default {
       });
       this.list.splice(index, 1);
     },
-    modify() {
-      var index = this.list.findIndex(item => item.dormId == this.dormId);
-      if (index == -1) {
-        alert("无对应的宿舍");
-      } else {
-        this.list[index].dormName = this.dormName;
-        this.list[index].roomNum = this.roomNum;
-        this.list[index].bedNum = this.bedNum;
-        this.list[index].campusName = this.campusName1;
-      }
+    modify(id) {
+      this.dialogFormVisible1=true
+      this.index = this.list.findIndex(item => {
+        if (item.dormId == id) {
+          return true;
+        }
+      });
+      this.modifyname=this.list[this.index].dormName
+    },
+    modifySub(){
+      this.list[this.index].dormName=this.modifyname
+      // console.log(this.modifyname)
+      this.dialogFormVisible1=false
     },
     search(keywords) {
       return this.list.filter(item => {

@@ -49,13 +49,37 @@
           <td>{{ item.bedNum }}</td>
           <td>
             <li style="list-style: none;">
-              <button type="reset" class="btn btn-success" @click="modify">修改</button>
+              <button type="reset" class="btn btn-success" @click="modify(item.id)">修改</button>
               <button type="reset" class="btn btn-danger" @click="del(item.id)">删除</button>
             </li>
           </td>
         </tr>
       </tbody>
     </table>
+<!--    <div class="tableTop">-->
+<!--      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>-->
+<!--      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">-->
+<!--        <el-form class="dialog">-->
+<!--          <label >校区名称:</label>-->
+<!--          <input type="text" v-model="addname">-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="add">确 定</el-button>-->
+<!--        </div>-->
+<!--      </el-dialog>-->
+<!--    </div>-->
+<!--      <el-dialog title="修改校区信息" :visible.sync="dialogFormVisible1">-->
+<!--        <el-form class="dialog">-->
+<!--          <label >校区名称:</label>-->
+<!--          <input type="text" v-model="modifyname">-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="dialogFormVisible1 = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="modifySub">确 定</el-button>-->
+<!--        </div>-->
+<!--      </el-dialog>-->
+
   </div>
 </template>
 
@@ -65,6 +89,7 @@ export default {
   data() {
     return {
       id: "",
+      index:"",
       name: "",
       buildnum: "",
       roomnum: "",
@@ -72,7 +97,8 @@ export default {
       keywords: "",
       addid: "",
       addname: "",
-      dialogTableVisible: false,
+      modifyname:"",
+      dialogFormVisible1: false,
       dialogFormVisible: false,
       formLabelWidth: "100px",
       list: []
@@ -114,16 +140,19 @@ export default {
       });
       this.list.splice(index, 1);
     },
-    modify() {
-      var index = this.list.findIndex(item => item.id == this.id);
-      if (index == -1) {
-        alert("无对应的校区");
-      } else {
-        this.list[index].name = this.name;
-        this.list[index].buildnum = this.buildnum;
-        this.list[index].roomnum = this.roomnum;
-        this.list[index].bednum = this.bednum;
-      }
+    modify(id) {
+      this.dialogFormVisible1=true
+      this.index = this.list.findIndex(item => {
+        if (item.id == id) {
+          return true;
+        }
+      });
+      this.modifyname=this.list[this.index].name
+    },
+    modifySub(){
+      this.list[this.index].name=this.modifyname
+      // console.log(this.modifyname)
+      this.dialogFormVisible1=false
     },
     search(keywords) {
       return this.list.filter(item => {
