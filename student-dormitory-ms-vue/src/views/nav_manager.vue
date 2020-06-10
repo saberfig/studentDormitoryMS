@@ -43,20 +43,7 @@
               </li>
             </ul>
           </li>
-          <li class="sub">
-            <a href="javascript:;">
-              <i class="iconfont icon-xue"></i>学生信息管理
-              <div class="pull-right">
-                <span class="caret"></span>
-              </div>
-            </a>
-            <ul class="templatemo-submenu">
-              <li>
-                <!-- <router-link to="resetpsw">重置密码</router-link> -->
-                <a @click="dialogFormVisible = true">重置密码</a>
-              </li>
-            </ul>
-          </li>
+
           <li class="sub">
             <a href="javascript:;">
               <i class="iconfont icon-ruzhu"></i>学生入住管理
@@ -76,6 +63,22 @@
               </li>
             </ul>
           </li>
+          <li class="sub">
+            <a href="javascript:;">
+              <i class="iconfont icon-xue"></i>账号管理
+              <div class="pull-right">
+                <span class="caret"></span>
+              </div>
+            </a>
+            <ul class="templatemo-submenu">
+              <li>
+                <a @click="dialogFormVisible = true">重置密码</a>
+              </li>
+              <li>
+                <a @click="dialogFormVisible2 = true">添加账号</a>
+              </li>
+            </ul>
+          </li>
           <li>
             <a href="javascript:;">
               <i class="iconfont icon-xitongrizhi"></i>系统日志
@@ -91,23 +94,47 @@
           </transition>
         </div>
       </div>
-      <el-dialog title="" :visible.sync="dialogFormVisible1" width="20%">
+
+      <el-dialog title :visible.sync="dialogFormVisible1" width="20%">
         <el-form class="dialog">
           <span style="margin-left:80px;font-size:20px;font-weight:500">退出登录？</span>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-          <el-button type="primary" @click="clearUser"  ><router-link to="/SuperManagerLogin" style="color:white">是</router-link></el-button>
+          <el-button type="primary" @click="clearUser">
+            <router-link to="/SuperManagerLogin" style="color:white">是</router-link>
+          </el-button>
         </div>
       </el-dialog>
-      <el-dialog title="重置密码" :visible.sync="dialogFormVisible">
+
+      <el-dialog title="重置密码" :visible.sync="dialogFormVisible" width="40%">
         <el-form class="dialog">
           <span>重置密码目标的学号:</span>
-          <input type="text" autocomplete="off" v-model="studentId" class="el-input__inner">
+          <input type="text" autocomplete="off" v-model="studentId" class="el-input__inner addinput" />
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
           <el-button type="primary" @click="resetpsw">确 定</el-button>
+        </div>
+      </el-dialog>
+
+      <el-dialog title="添加账号" :visible.sync="dialogFormVisible2" width="30%">
+        <el-form class="dialog">
+          <el-select v-model="addType" placeholder="添加账号类别">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form>
+        <el-form class="dialog">
+          <input type="text" autocomplete="off" v-model="addedId" class="el-input__inner addinput"  placeholder="要添加的账号 "/>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible2 = false">取 消</el-button>
+          <el-button type="primary" @click="addId">确 定</el-button>
         </div>
       </el-dialog>
     </div>
@@ -117,32 +144,51 @@
 <script>
 export default {
   name: "nav_manager",
-  num:0,
+  num: 0,
   data() {
     return {
       id: this.COMMON.id,
-      studentId:"",
-      dialogFormVisible:false,
-      dialogFormVisible1:false,
+      studentId: "",
+      dialogFormVisible: false,
+      dialogFormVisible1: false,
+      dialogFormVisible2: false,
+      addedId: "",
+      addType: "",
+      options: [
+        {
+          value: "学生",
+          label: "学生"
+        },
+        {
+          value: "管理员",
+          label: "管理员"
+        }
+      ]
     };
   },
   methods: {
-
+    addId() {},
     clearUser() {
       this.COMMON.clearUser();
     },
-    resetpsw(){
-        this.$axios
-          .post("/manager/reset_psw",{id:this.studentId})
-          .then(successResponse => {
-            if (successResponse != null) {
-              alert("重置成功"+" 学号："+successResponse.data.id+" 密码："+successResponse.data.psw);
-            }else{
-              alert("重置失败");
-            }
-          })
-          .catch(failResponse => {});
-      },
+    resetpsw() {
+      this.$axios
+        .post("/manager/reset_psw", { id: this.studentId })
+        .then(successResponse => {
+          if (successResponse != null) {
+            alert(
+              "重置成功" +
+                " 学号：" +
+                successResponse.data.id +
+                " 密码：" +
+                successResponse.data.psw
+            );
+          } else {
+            alert("重置失败");
+          }
+        })
+        .catch(failResponse => {});
+    }
   },
 
   mounted: function() {
@@ -168,5 +214,15 @@ export default {
 <style scoped>
 .temp {
   margin-top: 15%;
+}
+.templatemo-submenu li a:hover {
+  cursor: pointer;
+}
+.addinput{
+  width: 222px;
+  margin-top:20px; 
+}
+.width{
+  width: 500px
 }
 </style>
