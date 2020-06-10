@@ -1,6 +1,6 @@
 <template>
   <div class="addpadding">
-    <label class="pull-right" style="margin: 20px 0;">
+    <label class="pull-left" style="margin: 20px 0;">
       输入搜索关键字：
       <input
         type="text"
@@ -8,6 +8,27 @@
         v-model="keywords"
       />
     </label>
+    <div class="tableTop">
+      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>
+      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">
+        <el-form class="dialog" label-position="right" label-width="80px">
+          <el-form-item label="校区ID:">
+            <el-col :span="12">
+              <el-input v-model="addid"></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="校区名称:">
+            <el-col :span="12">
+              <el-input v-model="addname"></el-input>
+            </el-col>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="add">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
@@ -35,29 +56,30 @@
         </tr>
       </tbody>
     </table>
-    <div class="tableTop">
-      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>
-      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">
-        <el-form class="dialog">
-          <label >校区名称:</label>
-          <input type="text" v-model="addname">
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="add">确 定</el-button>
-        </div>
-      </el-dialog>
-    </div>
-      <el-dialog title="修改校区信息" :visible.sync="dialogFormVisible1">
-        <el-form class="dialog">
-          <label >校区名称:</label>
-          <input type="text" v-model="modifyname">
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-          <el-button type="primary" @click="modifySub">确 定</el-button>
-        </div>
-      </el-dialog>
+<!--    <div class="tableTop">-->
+<!--      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>-->
+<!--      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">-->
+<!--        <el-form class="dialog">-->
+<!--          <label >校区名称:</label>-->
+<!--          <input type="text" v-model="addname">-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="add">确 定</el-button>-->
+<!--        </div>-->
+<!--      </el-dialog>-->
+<!--    </div>-->
+<!--      <el-dialog title="修改校区信息" :visible.sync="dialogFormVisible1">-->
+<!--        <el-form class="dialog">-->
+<!--          <label >校区名称:</label>-->
+<!--          <input type="text" v-model="modifyname">-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="dialogFormVisible1 = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="modifySub">确 定</el-button>-->
+<!--        </div>-->
+<!--      </el-dialog>-->
+
   </div>
 </template>
 
@@ -73,6 +95,7 @@ export default {
       roomnum: "",
       bednum: "",
       keywords: "",
+      addid: "",
       addname: "",
       modifyname:"",
       dialogFormVisible1: false,

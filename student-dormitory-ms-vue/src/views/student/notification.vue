@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div class="notice">
 <!--    <div>notice</div>-->
 <!--    <div>-->
 <!--      &lt;!&ndash;-->
@@ -87,5 +87,8 @@
 </script>
 
 <style scoped>
-
+  .notice{
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 </style>

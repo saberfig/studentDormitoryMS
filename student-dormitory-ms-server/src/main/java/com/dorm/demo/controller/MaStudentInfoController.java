@@ -25,6 +25,4 @@ public class MaStudentInfoController {
         //System.out.println(dmid);
         return (maStudentInfoService.findInfo(dmid));
     }
-
-
 }

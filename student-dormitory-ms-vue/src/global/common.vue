@@ -14,6 +14,7 @@
       id = undefined;
       status = undefined;
       console.log("clearUser finish");
+
     }
     // 暴露出这些属性和方法
     export default {

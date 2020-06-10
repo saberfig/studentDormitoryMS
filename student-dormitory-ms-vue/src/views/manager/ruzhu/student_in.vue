@@ -2,48 +2,79 @@
   <div class="addpadding">
     <div>
       <div class="tableTop">
-        <label style="display: inline-block;">
-          <label>
-            <label>校区号:</label>
-            <input type="text" v-model="campus" />
-          </label>
-          <label>
-            <label>宿舍楼号:</label>
-            <input type="text" v-model="dorm" />
-          </label>
-          <label>
-            <label>房间号:</label>
-            <input type="text" v-model="room" />
-          </label>
-          <br>
-          <label>
-            <label>床位号:</label>
-            <input type="text" v-model="bed" />
-          </label>
-          <label>
-            <label>学号:</label>
-            <input type="text" v-model="student" />
-          </label>
+        <label class="pull-left" style="margin: 20px 0;">学号搜索：
+          <input
+            type="text"
+            style="border: #ccc solid 1px;border-radius: 4px;"
+            v-model="id"
+          />
         </label>
-        <div>
-          <ul class="opreating">
-            <li>
-              <button type="reset" class="btn btn-info" @click="add">添加</button>
-            </li>
-            <li>
-              <button type="reset" class="btn btn-success" @click="modify">导入本地文件</button>
-            </li>
-          </ul>
-        </div>
+        <el-form inline="true" class="pull-right">
+          <el-form-item>
+            <el-button type="primary"
+                       class="pull-right"
+                       @click="dialogFormVisible = true" >添加</el-button>
+          </el-form-item>
+          <span>&nbsp;</span>
+          <el-form-item>
+            <el-button type="success" class="pull-right" @click="modify">
+              导入本地文件
+            </el-button>
+          </el-form-item>
+        </el-form>
+
+        <el-dialog title="学生入住"
+                   :visible.sync="dialogFormVisible"
+                   width="40%">
+          <el-form class="dialog" label-position="right" label-width="30%">
+            <el-form-item label="校区名称:">
+              <el-col :span="14">
+                <el-select v-model="campus" placeholder="请选择校区名称">
+                  <div v-for="item in campus_names" :key="item">
+                    <el-option :label="item" :value="item"></el-option>
+                  </div>
+                </el-select>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="宿舍楼名称:">
+              <el-col :span="14">
+                <el-select v-model="dorm" placeholder="请选择宿舍楼名称">
+                  <div v-for="item in dorm_names" :key="item">
+                    <el-option :label="item" :value="item"></el-option>
+                  </div>
+                </el-select>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="房间号:">
+              <el-col :span="14">
+                <el-select v-model="room" placeholder="请选择房间号">
+                  <div v-for="item in room_ids" :key="item">
+                    <el-option :label="item" :value="item"></el-option>
+                  </div>
+                </el-select>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="床位号:">
+              <el-col :span="14">
+                <el-select v-model="bed" placeholder="请选择床位号">
+                  <div v-for="item in bed_ids" :key="item">
+                    <el-option :label="item" :value="item"></el-option>
+                  </div>
+                </el-select>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="学号:">
+              <el-col :span="14">
+                <el-input v-model="id"></el-input>
+              </el-col>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="centerDialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="add">确 定</el-button>
+          </span>
+        </el-dialog>
       </div>
-      <label class="pull-left" style="margin: 20px 0;">
-        学号搜索：
-        <input
-          type="text"
-          style="border: #ccc solid 1px;border-radius: 4px;"
-          v-model="id"
-        />
-      </label>
 
       <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -82,7 +113,13 @@
           room: "",
           dorm: "",
           campus: "",
-          list: []
+
+          list: [],
+          campus_names: ["北京邮电大学西土城校区","北京邮电大学沙河校区"],
+          dorm_names: ["学一楼","学二楼"],
+          room_ids: ["301","302"],
+          bed_ids: ["1","2","3","4","5","6","7","8","9","10","11"],
+          dialogFormVisible: false,
         };
       },
       mounted() {
