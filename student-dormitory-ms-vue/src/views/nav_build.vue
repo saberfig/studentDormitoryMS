@@ -75,7 +75,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-          <el-button type="primary" @click="clearUser"><router-link to="/DormManagerLogin" style="color:white">是</router-link></el-button>
+          <el-button type="primary" @click="clearUser">确 定</el-button>
         </div>
       </el-dialog>
     </div>
@@ -94,6 +94,7 @@ export default {
   methods: {
     clearUser() {
       this.COMMON.clearUser();
+      this.$router.replace('/NewLogin')
     }
   },
   mounted: function() {

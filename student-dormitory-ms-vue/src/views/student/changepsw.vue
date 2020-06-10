@@ -1,8 +1,5 @@
 <template>
-    <div>
-      <div>
-        改密码
-      </div>
+    <div class="change-psw">
       <div class="row">
         <el-form :model="ruleForm"  status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="width: 400px">
           <el-form-item  label="旧密码" prop="oldpass">
@@ -137,5 +134,8 @@
 </script>
 
 <style scoped>
-
+.change-psw{
+  margin-top: 20px;
+  margin-left: 20px;
+}
 </style>

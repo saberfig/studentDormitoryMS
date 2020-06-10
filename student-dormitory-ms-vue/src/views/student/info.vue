@@ -1,6 +1,5 @@
 <template>
   <div>
-    <dvi>info</dvi>
     <div>
       <div>
         <table width="100%" class="templatemo-table-fj">

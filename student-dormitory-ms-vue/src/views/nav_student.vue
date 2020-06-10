@@ -44,7 +44,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-          <router-link to="/StudentLogin" style="color:white"><el-button type="primary" @click="clearUser"  >是</el-button></router-link>
+          <el-button type="primary" @click="clearUser"  >确 定</el-button>
         </div>
       </el-dialog>
 
@@ -71,6 +71,7 @@ export default {
   methods: {
     clearUser() {
       this.COMMON.clearUser();
+      this.$router.replace('/NewLogin')
     }
   },
   mounted: function() {
