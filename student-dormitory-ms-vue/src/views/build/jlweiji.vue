@@ -33,17 +33,21 @@ export default {
 
   methods:{
     onSubmit(){
-      this.$axios
-        .post("/nav_build/jiluweiji",{
-          studentId: this.form.studentId,
-          time: this.form.time,
-          description: this.form.description
-        }).then(resp=> {
-        if (resp && resp.status === 200) {
-          this.$emit('onSubmit');
-          alert("发布成功");
-        }
-    })
+      if(this.form.studentId===""||this.form.description===""||this.form.time===''){
+      alert("请确保没有漏填的内容")
+  }
+  else{
+  this.$axios
+          .post("/nav_build/jiluweiji",{
+            studentId: this.form.studentId,
+            time: this.form.time,
+            description: this.form.description
+          }).then(resp=> {
+          if (resp && resp.status === 200) {
+            this.$emit('onSubmit');
+            alert("发布成功");
+          }
+      })}
   }
  }
 

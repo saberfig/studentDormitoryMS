@@ -27,17 +27,22 @@ export default {
 },
    methods:{
      onSubmit(){
+       if(this.form.time===""||this.form.description===""){
+          alert("请确保没有漏填的内容")
+       }
+       else{
        this.$axios
-         .post("/nav_build/xuetz",{
-           dormManagerId: this.COMMON.id,
-           time: this.form.time,
-           description: this.form.description
-         }).then(resp=> {
-         if (resp && resp.status === 200) {
-           this.$emit('onSubmit');
-           alert("发布成功");
-         }
-     })
+                .post("/nav_build/xuetz",{
+                  dormManagerId: this.COMMON.id,
+                  time: this.form.time,
+                  description: this.form.description
+                }).then(resp=> {
+                if (resp && resp.status === 200) {
+                  this.$emit('onSubmit');
+                  alert("发布成功");
+                }
+            })
+       }
    },
   }
 

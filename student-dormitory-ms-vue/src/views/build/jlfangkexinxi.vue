@@ -30,19 +30,24 @@ export default {
   },
   methods:{
     onSubmit(){
-      this.$axios
-        .post("/nav_build/djfangkexinxi",{
-          timeIn: this.form.timeIn,
-          vname: this.form.vname,
-          videntity: this.form.videntity,
-          reason: this.form.reason,
-          studentId: this.form.studentId
-        }).then(resp=> {
-        if (resp && resp.status === 200) {
-          this.$emit('onSubmit');
-          alert("发布成功");
-        }
-    })
+      if(this.form.timeIn===""||this.form.vname===""||this.form.videntity==""||this.form.reason===""||this.form.studentId===""){
+      alert("请确保没有漏填的内容")
+      }
+      else{
+            this.$axios
+              .post("/nav_build/djfangkexinxi",{
+                timeIn: this.form.timeIn,
+                vname: this.form.vname,
+                videntity: this.form.videntity,
+                reason: this.form.reason,
+                studentId: this.form.studentId
+              }).then(resp=> {
+              if (resp && resp.status === 200) {
+                this.$emit('onSubmit');
+                alert("发布成功");
+              }
+          })
+      }
    },
   }
 };
