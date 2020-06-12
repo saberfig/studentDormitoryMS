@@ -6,7 +6,7 @@
         <!--标题-->
         <div class="timeline-title-info">
           <div class="timeline-title">公告</div>
-          <div class="timeline-time">{{$moment(item.time).format('YYYY-MM-DD')}}</div>
+          <div class="timeline-time">{{$moment(item.time).format('YYYY-MM-DD MM:ss')}}</div>
         </div>
         <!--内容-->
         <div class="timeline-info">

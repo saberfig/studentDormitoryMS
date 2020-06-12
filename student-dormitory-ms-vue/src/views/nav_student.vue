@@ -27,13 +27,13 @@
 
           <li>
             <router-link to="notification">
-              <i class="iconfont icon-zhuye"></i>通知
+              <i class="iconfont icon-jilu"></i>通知
             </router-link>
           </li>
 
           <li>
             <router-link to="changepsw">
-              <i class="iconfont icon-zhuye"></i>更改密码
+              <i class="iconfont icon-dengji-"></i>更改密码
             </router-link>
           </li>
         </ul>

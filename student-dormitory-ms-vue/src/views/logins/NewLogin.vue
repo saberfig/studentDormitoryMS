@@ -4,7 +4,7 @@
       <div class="box2">
         <div class="title">大学生宿舍管理系统</div>
         <el-form :rules="loginFormRules" label-width="100px" class="form" :model="loginForm">
-            <el-form-item label="活动区域" prop="region">
+            <el-form-item label="用户类型" prop="region">
               <el-select v-model="loginForm.status" placeholder="请选择用户类型">
                 <el-option label="学生" value="1"></el-option>
                 <el-option label="宿舍管理员" value="2"></el-option>
@@ -19,7 +19,7 @@
             </el-form-item>
         </el-form>
         <div class="login-button">
-          <el-button type="primary" @click="login">提交</el-button>
+          <el-button type="primary" @click="login">登录</el-button>
         </div>
         <div class="forget-psw">
 

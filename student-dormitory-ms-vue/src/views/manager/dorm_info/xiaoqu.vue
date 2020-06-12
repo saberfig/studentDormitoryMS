@@ -135,7 +135,7 @@ export default {
         })
         .catch(failResponse => {
           this.$message({
-            message:'数据获取失败，请检查网络是否稳定1',
+            message:'数据获取失败，请检查网络是否稳定',
             type:'error',
           });
         });
@@ -200,7 +200,7 @@ export default {
           .catch(failResponse => {
             this.get_campus_info();
             this.$message({
-              message:'删除失败，请检查网络是否稳定',
+              message:'删除失败，请保证该校区下不存在任何宿舍楼与房间',
               type:'error',
             });
           });
