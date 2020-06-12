@@ -28,13 +28,13 @@ public class RoomInfoController {
     @PostMapping("api/manager/add_room")
     @ResponseBody
     public void addRoom(@RequestBody Room room){
-
+        roomService.addRoom(room);
     }
 
     @CrossOrigin
     @PostMapping("api/manager/del_room")
     @ResponseBody
     public void deleteRoom(@RequestBody Room room){
-
+        roomService.deleteBy3Id(room);
     }
 }
