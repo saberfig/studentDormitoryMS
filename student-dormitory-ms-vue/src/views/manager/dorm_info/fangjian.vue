@@ -1,6 +1,5 @@
 <template>
   <div class="addpadding">
-    <!-- <button @click="qqq">ttt</button> -->
     <div>
       <div class="block" style="margin-bottom:20px">
         <span class="demonstration">请选择所属位置：</span>
@@ -25,7 +24,7 @@
             <td>
               <li style="list-style: none;">
                 <!-- <button type="reset" class="btn btn-success" @click="modify">修改</button> -->
-                <button type="reset" class="btn btn-danger" @click="del(item.name)">删除</button>
+                <button type="reset" class="btn btn-danger" @click="del(item.name,item.campusName,item.dormName)">删除</button>
               </li>
             </td>
           </tr>
@@ -80,7 +79,9 @@ export default {
       options1:[],
       filter: ["",""],
       addroomId:"",
-      addroomplace:"",
+      addroomplace:["",""],
+      addcampusId:"",
+      adddormId:""
     };
   },
   mounted() {
@@ -96,12 +97,7 @@ export default {
           this.list = successResponse.data;
           var a;
           for (a in this.list) {
-            this.list[a].name =
-              this.list[a].campusId +
-              "-" +
-              this.list[a].dormId +
-              "-" +
-              this.list[a].roomId;
+            this.list[a].name = this.list[a].roomId;
           }
           var name = [];
           var b;
@@ -211,12 +207,20 @@ export default {
         alert("房间所属位置不可为空")
         return
       }
-
+      var a
+      var b
+      for(a in this.campusList){
+        for(b in this.dormList)
+        if(this.campusList[a].name===this.addroomplace[0]&&this.dormList[b].dormName===this.addroomplace[1]){
+          this.addcampusId = this.campusList[a].id
+          this.adddormId =this.dormList[b].id
+        }
+      }
       this.$axios
         .post("/manager/add_room", {
-          id: this.addid,//房间id
-          dormId: this.addname,//宿舍楼id
-          dormCampusId:""//校区id
+          id: this.addroomId,//房间id
+          dormId: this.adddormId,//宿舍楼id
+          dormCampusId:this.addcampusId//校区id
         })
         .then(successResponse => {
           this.get_room_info();
@@ -235,12 +239,24 @@ export default {
 
       this.dialogFormVisible = false;
     },
-    del(id) {
+    del(id,campusName,dormName) {
+      var a
+      var b
+      var dormId
+      var campusId
+      for(a in this.campusList){
+        for(b in this.dormList)
+        if(this.campusList[a].name===campusName&&this.dormList[b].dormName===dormName){
+          campusId = this.campusList[a].id
+          dormId =this.dormList[b].id
+        }
+      }
+      console.log("id:"+id,"dormid:"+dormId,"campusid:"+campusId)
       this.$axios
         .post("/manager/del_room",{
           id:id,//房间id
-          dormId:"",//宿舍楼id
-          campusId: "",//校区id
+          dormId:dormId,//宿舍楼id
+          campusId: campusId,//校区id
         })
         .then(successResponse => {
           this.get_room_info();
@@ -256,17 +272,6 @@ export default {
           });
         });
     },
-    // modify() {
-    //   var index = this.list.findIndex(item => item.roomId == this.roomId);
-    //   if (index == -1) {
-    //     alert("无对应的房间");
-    //   } else {
-    //     this.list[index].name = this.name;
-    //     this.list[index].bedNum = this.bedNum;
-    //     this.list[index].dormName = this.dormName1;
-    //     this.list[index].campusName = this.campusName1;
-    //   }
-    // },
     search(keywords) {
       return this.list.filter(item => {
         var filter0
@@ -279,7 +284,6 @@ export default {
           filter0=this.filter[0]
           filter1=this.filter[1]
         }
-        console.log(filter0,filter1)
         if (
           item.campusName.includes(filter0) &&
           item.dormName.includes(filter1)

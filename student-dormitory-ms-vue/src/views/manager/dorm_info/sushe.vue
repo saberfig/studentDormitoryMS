@@ -34,8 +34,6 @@
       <div class="tableTop">
       <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加宿舍楼</el-button>
       <el-dialog title="添加宿舍楼" :visible.sync="dialogFormVisible">
-        <span>宿舍楼id</span>
-        <el-input type="text" autocomplete="off" v-model="addid" size="medium"></el-input>
         <el-form class="dialog">
           <span>宿舍楼名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           <input type="text" autocomplete="off" v-model="adddormname" class="el-input__inner width">
@@ -50,11 +48,11 @@
         </div>
       </el-dialog>
       <el-dialog title="修改宿舍楼信息" :visible.sync="dialogFormVisible1">
-        <span>宿舍楼id</span>
-        <el-input type="text" autocomplete="off" :placeholder="dormIdNow" size="medium" :disabled="true"></el-input>
+         <span>宿舍楼id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <input type="text" autocomplete="off" class="el-input__inner width" :placeholder="dormIdNow" :disabled="true">
         <el-form class="dialog">
-          <label >宿舍楼名称:</label>
-          <input type="text" v-model="modifyname">
+          <span >宿舍楼名称:&nbsp;</span>
+           <input type="text" autocomplete="off" v-model="modifyname" class="el-input__inner width" :disabled="true">
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible1 = false">取 消</el-button>
@@ -107,6 +105,7 @@ export default {
           this.list = successResponse.data;
         })
         .catch(failResponse => {});
+        
     },
     get_campus_info() {
       this.$axios
@@ -137,6 +136,7 @@ export default {
         alert("所属校区不可为空")
         return
       }
+      this.addid = this.list.length
       var campusname=this.addcampusname;
       var get_campus =this.campusList.filter(item => {
         if(item.name===campusname[0]){
