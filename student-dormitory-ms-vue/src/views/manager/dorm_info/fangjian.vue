@@ -149,7 +149,7 @@ export default {
           for (x in this.options) {
             var y
             var unique = []
-            for(y in this.options[x].children){ 
+            for(y in this.options[x].children){
               if(unique.indexOf(this.options[x].children[y].value)==-1){
                 unique.push(this.options[x].children[y].value)
               }
@@ -174,7 +174,7 @@ export default {
             }
           }
           var c;
-          for (c in name) {          
+          for (c in name) {
             this.options1.push({ value: name[c], label: name[c],children:[] });
           }
         })
@@ -208,7 +208,7 @@ export default {
           for (x in this.options1) {
             var y
             var unique = []
-            for(y in this.options1[x].children){ 
+            for(y in this.options1[x].children){
               if(unique.indexOf(this.options1[x].children[y].value)==-1){
                 unique.push(this.options1[x].children[y].value)
               }
