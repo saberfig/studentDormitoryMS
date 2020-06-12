@@ -2,11 +2,11 @@
 <div>
     <div>
     	<h2>发布通知</h2>
-    	<el-form  class="templatemo-form-weiji" ref="dataForm">
+    	<el-form ref="dataForm">
     	<el-form-item label="时间"  prop="time">
     	<br><el-input v-model="form.time" type="datetime-local"></el-input></el-form-item><br>
     	<el-form-item label="描述"  prop="description"><br>
-    	<br><el-input v-model="form.description" class="templatemo-input-weiji"></el-input></el-form-item><br>
+    	<br><el-input v-model="form.description"></el-input></el-form-item><br>
     	<el-button type="primary" @click="onSubmit">发布通知</el-button><br>
     	</el-form>
     	</div>
