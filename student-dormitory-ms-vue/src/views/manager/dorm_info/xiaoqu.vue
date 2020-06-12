@@ -132,7 +132,6 @@ export default {
         .get("/manager/get_campus_info")
         .then(successResponse => {
           this.list = successResponse.data;
-          console.log(this.list);
         })
         .catch(failResponse => {
           this.$message({
