@@ -3,7 +3,7 @@
     <div>
       <div class="block" style="margin-bottom:20px">
         <span class="demonstration">请选择校区：</span>
-        <el-cascader v-model="campusName" :options="options"></el-cascader>
+        <el-cascader v-model="campusName" :options="options" clearable></el-cascader>
       </div>
 
       <table class="table table-bordered table-hover table-striped">
@@ -87,7 +87,6 @@ export default {
   },
   mounted() {
     this.get_dorm_info();
-    this.options.push({value:"",label:"空"});
   },
   methods: {
     get_dorm_info() {
