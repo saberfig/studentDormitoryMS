@@ -19,7 +19,7 @@
             </el-form-item>
         </el-form>
         <div class="login-button">
-          <el-button type="primary" @click="login">提交</el-button>
+          <el-button type="primary" @click="login">登录</el-button>
         </div>
         <div class="forget-psw">
 
