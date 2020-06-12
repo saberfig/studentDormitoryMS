@@ -24,8 +24,25 @@ public class CampusInfoController {
     public List<CampusInfo> getStudent_Bed(){
         return campusService.getCampusInfo();
     }
+
     @CrossOrigin
     @PostMapping("api/manager/add_campus")
     @ResponseBody
-    public String addCampus(String name,String id) {  return campusService.addCampus(name,id); }
+    public String addCampus(@RequestBody Campus campus) {
+        return campusService.addCampus(campus);
+    }
+
+    @CrossOrigin
+    @PostMapping("api/manager/del_campus")
+    @ResponseBody
+    public void delCampus(@RequestBody Campus campus) {
+        campusService.deleteById(campus.getId());
+    }
+
+    @CrossOrigin
+    @PostMapping("api/manager/modify_campus")
+    @ResponseBody
+    public void modifyCampus(@RequestBody Campus campus) {
+        campusService.modifyNameById(campus.getId(),campus.getName());
+    }
 }

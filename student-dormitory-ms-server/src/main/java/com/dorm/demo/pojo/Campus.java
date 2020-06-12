@@ -9,6 +9,14 @@ public class Campus {
     private String id;
     private String name;
 
+    public Campus(){
+
+    }
+    public Campus(String id,String name){
+        this.id=id;
+        this.name=name;
+    }
+
     @Id
     @Column(name = "id", nullable = false, length = 10)
     public String getId() {

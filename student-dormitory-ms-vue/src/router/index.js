@@ -13,7 +13,8 @@ import index from '../views/manager/index'
 import xiaoqu from "../views/manager/dorm_info/xiaoqu"
 import sushe from "../views/manager/dorm_info/sushe"
 import fangjian from "../views/manager/dorm_info/fangjian"
-import resetpsw from "../views/manager/student_info/resetpsw";
+import student_account from "../views/manager/student_info/student_account";
+import build_account from "../views/manager/student_info/build_account";
 import dorm_exchange from "../views/manager/ruzhu/dorm_exchange";
 import student_in from "../views/manager/ruzhu/student_in";
 import student_out from "../views/manager/ruzhu/student_out";
@@ -103,8 +104,15 @@ export default new Router({
             requireAuth: true
           }
         },
-        { path: 'resetpsw',
-          component: resetpsw,
+        {
+          path: 'student_account',
+          component: student_account,
+          meta: {
+            requireAuth: true
+          }
+        },
+        { path: 'build_account',
+          component: build_account,
           meta: {
             requireAuth: true
           }

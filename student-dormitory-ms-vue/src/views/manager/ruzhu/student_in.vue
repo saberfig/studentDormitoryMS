@@ -22,58 +22,6 @@
             </el-button>
           </el-form-item>
         </el-form>
-
-        <el-dialog title="学生入住"
-                   :visible.sync="dialogFormVisible"
-                   width="40%">
-          <el-form class="dialog" label-position="right" label-width="30%">
-            <el-form-item label="校区名称:">
-              <el-col :span="14">
-                <el-select v-model="campus" placeholder="请选择校区名称">
-                  <div v-for="item in campus_names" :key="item">
-                    <el-option :label="item" :value="item"></el-option>
-                  </div>
-                </el-select>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="宿舍楼名称:">
-              <el-col :span="14">
-                <el-select v-model="dorm" placeholder="请选择宿舍楼名称">
-                  <div v-for="item in dorm_names" :key="item">
-                    <el-option :label="item" :value="item"></el-option>
-                  </div>
-                </el-select>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="房间号:">
-              <el-col :span="14">
-                <el-select v-model="room" placeholder="请选择房间号">
-                  <div v-for="item in room_ids" :key="item">
-                    <el-option :label="item" :value="item"></el-option>
-                  </div>
-                </el-select>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="床位号:">
-              <el-col :span="14">
-                <el-select v-model="bed" placeholder="请选择床位号">
-                  <div v-for="item in bed_ids" :key="item">
-                    <el-option :label="item" :value="item"></el-option>
-                  </div>
-                </el-select>
-              </el-col>
-            </el-form-item>
-            <el-form-item label="学号:">
-              <el-col :span="14">
-                <el-input v-model="id"></el-input>
-              </el-col>
-            </el-form-item>
-          </el-form>
-          <span slot="footer" class="dialog-footer">
-            <el-button @click="centerDialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="add">确 定</el-button>
-          </span>
-        </el-dialog>
       </div>
 
       <table class="table table-bordered table-hover table-striped">
@@ -98,6 +46,58 @@
         </tr>
         </tbody>
       </table>
+
+      <el-dialog title="学生入住"
+                 :visible.sync="dialogFormVisible"
+                 width="40%">
+        <el-form class="dialog" label-position="right" label-width="30%">
+          <el-form-item label="校区名称:">
+            <el-col :span="14">
+              <el-select v-model="campus" placeholder="请选择校区名称">
+                <div v-for="item in campus_names" :key="item">
+                  <el-option :label="item" :value="item"></el-option>
+                </div>
+              </el-select>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="宿舍楼名称:">
+            <el-col :span="14">
+              <el-select v-model="dorm" placeholder="请选择宿舍楼名称">
+                <div v-for="item in dorm_names" :key="item">
+                  <el-option :label="item" :value="item"></el-option>
+                </div>
+              </el-select>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="房间号:">
+            <el-col :span="14">
+              <el-select v-model="room" placeholder="请选择房间号">
+                <div v-for="item in room_ids" :key="item">
+                  <el-option :label="item" :value="item"></el-option>
+                </div>
+              </el-select>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="床位号:">
+            <el-col :span="14">
+              <el-select v-model="bed" placeholder="请选择床位号">
+                <div v-for="item in bed_ids" :key="item">
+                  <el-option :label="item" :value="item"></el-option>
+                </div>
+              </el-select>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="学号:">
+            <el-col :span="14">
+              <el-input v-model="id"></el-input>
+            </el-col>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="add">确 定</el-button>
+          </span>
+      </el-dialog>
     </div>
   </div>
 </template>

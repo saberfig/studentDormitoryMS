@@ -6,17 +6,20 @@ import org.hibernate.sql.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CampusDao extends JpaRepository<CampusInfo, Integer> {
+public interface CampusDao extends JpaRepository<Campus, Integer> {
 
-    @Query(nativeQuery=true,value = "" +
-            "select campus_id as id,name,dorm_num,room_num,bed_num from (select dorm_num,room_num,campus_id,bed_num from (select dorm_num,room_num,campus_id from (select count(*) as dorm_num,campus_id from dorm group by campus_id)as a left join (select count(*) as room_num,dorm_campus_id from room group by dorm_campus_id) as b on b.dorm_campus_id = a.campus_id)as d left join (select count(*)as bed_num,room_dorm_campus_id from bed group by room_dorm_campus_id)as c on d.campus_id =c.room_dorm_campus_id)as e left join (select * from campus)as f on f.id = e.campus_id")
-    List<CampusInfo> getCampusInfo();
-    //Dao层，原生SQL实现更新方法接口
-    @Query(value = "INSERT INTO campus ( name,id)  VALUES( name,id); ", nativeQuery = true)
+    @Transactional
     @Modifying
-    public void addCampus(String name,String id);
+    @Query(value = "delete from Campus where id=:campusId")
+    void deleteByCampusId(@Param("campusId") String campusId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update Campus set name=:name where id=:id")
+    void modifyNameById(@Param("id") String id,@Param("name")String name);
 }

@@ -1,9 +1,10 @@
 <template>
   <div class="addpadding">
+    <!-- <button @click="qqq">ttt</button> -->
     <div>
       <div class="block" style="margin-bottom:20px">
         <span class="demonstration">请选择所属位置：</span>
-        <el-cascader v-model="filter" :options="options"></el-cascader>
+        <el-cascader v-model="filter" :options="options" clearable></el-cascader>
       </div>
       <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -148,7 +149,7 @@ export default {
           for (x in this.options) {
             var y
             var unique = []
-            for(y in this.options[x].children){ 
+            for(y in this.options[x].children){
               if(unique.indexOf(this.options[x].children[y].value)==-1){
                 unique.push(this.options[x].children[y].value)
               }
@@ -173,7 +174,7 @@ export default {
             }
           }
           var c;
-          for (c in name) {          
+          for (c in name) {
             this.options1.push({ value: name[c], label: name[c],children:[] });
           }
         })
@@ -207,7 +208,7 @@ export default {
           for (x in this.options1) {
             var y
             var unique = []
-            for(y in this.options1[x].children){ 
+            for(y in this.options1[x].children){
               if(unique.indexOf(this.options1[x].children[y].value)==-1){
                 unique.push(this.options1[x].children[y].value)
               }
@@ -252,15 +253,27 @@ export default {
     },
     search(keywords) {
       return this.list.filter(item => {
+        var filter0
+        var filter1
+        if(typeof(this.filter[0])==='undefined'&&typeof(this.filter[0])==='undefined'){
+          filter0=""
+          filter1=""  
+        }
+        else{
+          filter0=this.filter[0]
+          filter1=this.filter[1]
+        }
+        console.log(filter0,filter1)
         if (
-          item.campusName.includes(this.filter[0]) &&
-          item.dormName.includes(this.filter[1])
+          item.campusName.includes(filter0) &&
+          item.dormName.includes(filter1)
         ) {
           return item;
         }
       });
-    }
-  }
+    },
+  },
+  
 };
 </script>
 
