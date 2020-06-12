@@ -251,7 +251,6 @@ export default {
           dormId =this.dormList[b].id
         }
       }
-      console.log("id:"+id,"dormid:"+dormId,"campusid:"+campusId)
       this.$axios
         .post("/manager/del_room",{
           id:id,//房间id
