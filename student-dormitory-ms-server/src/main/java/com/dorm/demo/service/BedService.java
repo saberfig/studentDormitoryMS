@@ -28,4 +28,15 @@ public class BedService {
     public void addBed(Bed bed){
         bedDAO.save(bed);
     }
+
+    public void exchangeBed(List<Bed> beds){
+        String id1=beds.get(0).getStudentId();
+        String id2=beds.get(1).getStudentId();
+        Bed bed1 = bedDAO.findByStudentId(id1);
+        bed1.setStudentId(id2);
+        Bed bed2 = bedDAO.findByStudentId(id2);
+        bed2.setStudentId(id1);
+        bedDAO.save(bed1);
+        bedDAO.save(bed2);
+    }
 }

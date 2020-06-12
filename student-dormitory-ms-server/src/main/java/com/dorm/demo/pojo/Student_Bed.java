@@ -8,8 +8,8 @@ public class Student_Bed {
     @Id
     private String id;//学生学号
     private String name;
-    //private String sex;
-    //private String major;
+    private String sex;
+    private String major;
     //private String tel;
     //private Integer yearIn;
     //private Date birth;
@@ -23,12 +23,16 @@ public class Student_Bed {
 
     public Student_Bed(String id,
                        String name,
+                       String sex,
+                       String major,
                        String bed_id,
                        String roomId,
                        String roomDormId,
                        String roomDormCampusId){
         this.id=id;
         this.name=name;
+        this.sex=sex;
+        this.major=major;
         this.bed_id=bed_id;
         this.roomId=roomId;
         this.roomDormId=roomDormId;
@@ -50,6 +54,22 @@ public class Student_Bed {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getBed_id() {

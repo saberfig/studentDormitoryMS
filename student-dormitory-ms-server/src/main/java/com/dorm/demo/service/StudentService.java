@@ -54,6 +54,9 @@ public class StudentService {
         return studentDAO.findByIdAndPsw(id,psw);
     }
 
+    public List<Student> getAllStudent(){
+        return studentDAO.findAll();
+    }
 
     //根据id判断student条目是否存在
     public boolean isExit(String id){
@@ -65,6 +68,10 @@ public class StudentService {
     //添加学生项
     public void add(Student student1){
         studentDAO.save(student1);
+    }
+
+    public void deleteByStudentId(String id){
+        studentDAO.deleteByStudentId(id);
     }
     //重置密码
     public Student resetPsw(String id){

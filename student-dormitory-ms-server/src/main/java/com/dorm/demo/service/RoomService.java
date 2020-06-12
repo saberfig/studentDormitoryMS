@@ -24,6 +24,9 @@ public class RoomService {
     }
 
     public void addRoom(Room room){
+        System.out.println(room.getId());
+        System.out.println(room.getDormId());
+        System.out.println(room.getDormCampusId());
         roomDao.save(room);
     }
 

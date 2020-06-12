@@ -13,7 +13,7 @@ import java.util.List;
 public interface BedDAO extends JpaRepository<Bed, Integer> {
 
     @Query(value = "select " +
-            "new Student_Bed(s.id,s.name,b.id,b.roomId,b.roomDormId,b.roomDormCampusId)" +
+            "new Student_Bed(s.id,s.name,s.sex,s.major,b.id,b.roomId,b.roomDormId,b.roomDormCampusId)" +
             "from Student s inner join Bed b on s.id=b.studentId")
     List<Student_Bed> getStudent_Bed();
 

@@ -49,4 +49,11 @@ public class DormAdjustController {
             return new Result(401);//学生已存在
         }
     }
+
+    @CrossOrigin
+    @PostMapping("api/manager/exchange")
+    @ResponseBody
+    public void exchangeBed(@RequestBody List<Bed> beds){
+        bedService.exchangeBed(beds);
+    }
 }

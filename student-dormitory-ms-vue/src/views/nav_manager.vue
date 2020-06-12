@@ -53,9 +53,6 @@
             </a>
             <ul class="templatemo-submenu">
               <li>
-                <router-link to="dorm_exchange">宿舍对调</router-link>
-              </li>
-              <li>
                 <router-link to="student_in">学生入住</router-link>
               </li>
               <li>
@@ -72,18 +69,24 @@
             </a>
             <ul class="templatemo-submenu">
               <li>
-                <a @click="dialogFormVisible = true">重置密码</a>
+                <router-link to="student_account">学生账号管理</router-link>
               </li>
-              <li>
-                <a @click="dialogFormVisible2 = true">添加账号</a>
-              </li>
+<!--              <li>-->
+<!--                <router-link to="build_account">宿舍管理员账号管理</router-link>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a @click="dialogFormVisible = true">重置密码</a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a @click="dialogFormVisible2 = true">添加账号</a>-->
+<!--              </li>-->
             </ul>
           </li>
-          <li>
-            <a href="javascript:;">
-              <i class="iconfont icon-xitongrizhi"></i>系统日志
-            </a>
-          </li>
+<!--          <li>-->
+<!--            <a href="javascript:;">-->
+<!--              <i class="iconfont icon-xitongrizhi"></i>系统日志-->
+<!--            </a>-->
+<!--          </li>-->
         </ul>
       </div>
 
@@ -105,36 +108,36 @@
         </div>
       </el-dialog>
 
-      <el-dialog title="重置密码" :visible.sync="dialogFormVisible" width="40%">
-        <el-form class="dialog">
-          <span>重置密码目标的学号:</span>
-          <input type="text" autocomplete="off" v-model="studentId" class="el-input__inner addinput" />
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="resetpsw">确 定</el-button>
-        </div>
-      </el-dialog>
+<!--      <el-dialog title="重置密码" :visible.sync="dialogFormVisible" width="40%">-->
+<!--        <el-form class="dialog">-->
+<!--          <span>重置密码目标的学号:</span>-->
+<!--          <input type="text" autocomplete="off" v-model="studentId" class="el-input__inner addinput" />-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="resetpsw">确 定</el-button>-->
+<!--        </div>-->
+<!--      </el-dialog>-->
 
-      <el-dialog title="添加账号" :visible.sync="dialogFormVisible2" width="30%">
-        <el-form class="dialog">
-          <el-select v-model="addType" placeholder="添加账号类别">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </el-form>
-        <el-form class="dialog">
-          <input type="text" autocomplete="off" v-model="addedId" class="el-input__inner addinput"  placeholder="要添加的账号 "/>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible2 = false">取 消</el-button>
-          <el-button type="primary" @click="addId">确 定</el-button>
-        </div>
-      </el-dialog>
+<!--      <el-dialog title="添加账号" :visible.sync="dialogFormVisible2" width="30%">-->
+<!--        <el-form class="dialog">-->
+<!--          <el-select v-model="addType" placeholder="添加账号类别">-->
+<!--            <el-option-->
+<!--              v-for="item in options"-->
+<!--              :key="item.value"-->
+<!--              :label="item.label"-->
+<!--              :value="item.value"-->
+<!--            ></el-option>-->
+<!--          </el-select>-->
+<!--        </el-form>-->
+<!--        <el-form class="dialog">-->
+<!--          <input type="text" autocomplete="off" v-model="addedId" class="el-input__inner addinput"  placeholder="要添加的账号 "/>-->
+<!--        </el-form>-->
+<!--        <div slot="footer" class="dialog-footer">-->
+<!--          <el-button @click="dialogFormVisible2 = false">取 消</el-button>-->
+<!--          <el-button type="primary" @click="addId">确 定</el-button>-->
+<!--        </div>-->
+<!--      </el-dialog>-->
     </div>
   </div>
 </template>
