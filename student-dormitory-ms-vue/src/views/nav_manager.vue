@@ -219,7 +219,7 @@ export default {
 }
 .addinput{
   width: 222px;
-  margin-top:20px; 
+  margin-top:20px;
 }
 .width{
   width: 500px

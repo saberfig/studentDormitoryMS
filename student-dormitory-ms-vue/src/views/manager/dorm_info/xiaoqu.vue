@@ -10,24 +10,6 @@
     </label>
     <div class="tableTop">
       <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>
-      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">
-        <el-form class="dialog" label-position="right" label-width="80px">
-          <el-form-item label="校区ID:">
-            <el-col :span="12">
-              <el-input v-model="addid"></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="校区名称:">
-            <el-col :span="12">
-              <el-input v-model="addname"></el-input>
-            </el-col>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="add">确 定</el-button>
-        </div>
-      </el-dialog>
     </div>
     <table class="table table-bordered table-hover table-striped">
       <thead>
@@ -49,36 +31,57 @@
           <td>{{ item.bedNum }}</td>
           <td>
             <li style="list-style: none;">
-              <button type="reset" class="btn btn-success" @click="modify(item.id)">修改</button>
+              <button type="reset" class="btn btn-success" @click="modify(item.id,item.name)">修改</button>
               <button type="reset" class="btn btn-danger" @click="del(item.id)">删除</button>
             </li>
           </td>
         </tr>
       </tbody>
     </table>
-<!--    <div class="tableTop">-->
-<!--      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加校区</el-button>-->
-<!--      <el-dialog title="添加校区" :visible.sync="dialogFormVisible">-->
-<!--        <el-form class="dialog">-->
-<!--          <label >校区名称:</label>-->
-<!--          <input type="text" v-model="addname">-->
-<!--        </el-form>-->
-<!--        <div slot="footer" class="dialog-footer">-->
-<!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
-<!--          <el-button type="primary" @click="add">确 定</el-button>-->
-<!--        </div>-->
-<!--      </el-dialog>-->
-<!--    </div>-->
-<!--      <el-dialog title="修改校区信息" :visible.sync="dialogFormVisible1">-->
-<!--        <el-form class="dialog">-->
-<!--          <label >校区名称:</label>-->
-<!--          <input type="text" v-model="modifyname">-->
-<!--        </el-form>-->
-<!--        <div slot="footer" class="dialog-footer">-->
-<!--          <el-button @click="dialogFormVisible1 = false">取 消</el-button>-->
-<!--          <el-button type="primary" @click="modifySub">确 定</el-button>-->
-<!--        </div>-->
-<!--      </el-dialog>-->
+
+    <el-dialog title="添加校区"
+               :visible.sync="dialogFormVisible"
+               width="40%">
+      <el-form class="dialog" label-position="right" label-width="30%">
+        <el-form-item label="校区ID:">
+          <el-col :span="14">
+            <el-input v-model="addid" :disabled="true"></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="校区名称:">
+          <el-col :span="14">
+            <el-input v-model="addname" placeholder="请填写校区名称"></el-input>
+          </el-col>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="add">确 定</el-button>
+          </span>
+    </el-dialog>
+
+    <el-dialog title="修改校区信息"
+               :visible.sync="dialogFormVisible1"
+               width="40%">
+      <el-form class="dialog"
+               label-position="right"
+               label-width="30%">
+        <el-form-item label="校区ID:">
+          <el-col :span="14">
+            <el-input v-model="modifyid" :disabled="true"></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="校区名称:">
+          <el-col :span="14">
+            <el-input v-model="modifyname"></el-input>
+          </el-col>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+        <el-button type="primary" @click="modifySub()">确 定</el-button>
+      </div>
+    </el-dialog>
 
   </div>
 </template>
@@ -90,22 +93,38 @@ export default {
     return {
       id: "",
       index:"",
+
       name: "",
       buildnum: "",
       roomnum: "",
       bednum: "",
+
       keywords: "",
       addid: "",
       addname: "",
+      modifyid: "",
       modifyname:"",
+
       dialogFormVisible1: false,
       dialogFormVisible: false,
-      formLabelWidth: "100px",
-      list: []
+      list: [],
+      ids:[],
+      names: [],
+      submited: true,
     };
   },
   mounted() {
     this.get_campus_info();
+  },
+  updated(){
+    if(this.list){
+      this.addid=Number(this.list[this.list.length-1].id)+1;
+      var length=this.list.length;
+      for(var i=0;i<length;i++){
+        this.ids.push(this.list[i].id);
+        this.names.push(this.list[i].name);
+      }
+    }
   },
   methods: {
     get_campus_info() {
@@ -113,46 +132,127 @@ export default {
         .get("/manager/get_campus_info")
         .then(successResponse => {
           this.list = successResponse.data;
+          console.log(this.list);
         })
-        .catch(failResponse => {});
+        .catch(failResponse => {
+          this.$message({
+            message:'数据获取失败，请检查网络是否稳定1',
+            type:'error',
+          });
+        });
     },
     add() {
       if (this.addname === "") {
-        alert("校区名不能为空!");
-      } else {
+        this.$message({
+          message:'校区名称不能为空',
+          type:'warning',
+        });
+        this.submited=false;
+      } else if(this.names.includes(this.addname)){
+        this.$message({
+          message:'校区名称已存在',
+          type:'warning',
+        });
+        this.submited=false;
+      }
+
+      if(!this.submited){
+        this.submited=true;
+        return false;
+      }else{
         this.$axios
           .post("/manager/add_campus", {
-            id: this.list[this.list.length-1].id+1,
+            id: this.addid,
             name: this.addname
           })
           .then(successResponse => {
             this.get_campus_info();
+            this.addname="";
+            this.$message({
+              message:'添加成功',
+              type:'success',
+            });
           })
-          .catch(failResponse => {});
+          .catch(failResponse => {
+            this.get_campus_info();
+            this.$message({
+              message:'添加失败，请检查网络是否稳定',
+              type:'error',
+            });
+          });
       }
       this.dialogFormVisible = false;
     },
     del(id) {
-      var index = this.list.findIndex(item => {
-        if (item.id == id) {
-          return true;
-        }
-      });
-      this.list.splice(index, 1);
+      this.$confirm('此操作将永久删除该数据，是否继续？','提示',{
+        confirmButtonText:'确定',
+        cancelButtonText:'取消',
+        type:'warning',
+      }).then(()=>{
+        this.$axios
+          .post("/manager/del_campus",{id:id})
+          .then(successResponse => {
+            this.get_campus_info();
+            this.$message({
+              message:'删除成功',
+              type:'success',
+            });
+          })
+          .catch(failResponse => {
+            this.get_campus_info();
+            this.$message({
+              message:'删除失败，请检查网络是否稳定',
+              type:'error',
+            });
+          });
+      })
+      .catch(()=>{
+      })
     },
-    modify(id) {
+    modify(id,name) {
       this.dialogFormVisible1=true
-      this.index = this.list.findIndex(item => {
-        if (item.id == id) {
-          return true;
-        }
-      });
-      this.modifyname=this.list[this.index].name
+      this.modifyid=id;
+      this.modifyname=name;
     },
     modifySub(){
-      this.list[this.index].name=this.modifyname
-      // console.log(this.modifyname)
-      this.dialogFormVisible1=false
+      if(this.names.includes(this.modifyname)){
+        this.$message({
+          message:'校区名称已存在',
+          type:'warning',
+        });
+        this.submited=false;
+      }
+      if(!this.submited) {
+        this.submited = true;
+        return false;
+      }
+      else{
+        this.$confirm('此操作将永久修改该数据，是否继续？','提示',{
+          confirmButtonText:'确定',
+          cancelButtonText:'取消',
+          type:'warning',
+        }).then(()=>{
+          this.$axios
+            .post("/manager/modify_campus",{id:this.modifyid,name:this.modifyname})
+            .then(successResponse => {
+              this.get_campus_info();
+              this.$message({
+                message:'修改成功',
+                type:'success',
+              });
+              this.dialogFormVisible1=false;
+            })
+            .catch(failResponse => {
+              this.get_campus_info();
+              this.$message({
+                message:'修改失败，请检查网络是否稳定',
+                type:'error',
+              });
+            });
+        })
+        .catch(()=>{
+        });
+      }
     },
     search(keywords) {
       return this.list.filter(item => {
@@ -164,9 +264,6 @@ export default {
         }
       });
     },
-    test() {
-      console.log(this.list.length);
-    }
   }
 };
 </script>

@@ -86,14 +86,15 @@ export default {
     };
   },
   mounted() {
-    this.get_dorm_info(); 
+    this.get_dorm_info();
+    this.options.push({value:"",label:"空"});
   },
   methods: {
     get_dorm_info() {
       this.$axios
         .get("/manager/get_dorm_info")
         .then(successResponse => {
-          this.get_campus_info()
+          this.get_campus_info();
           this.list = successResponse.data;
           var a;
           for (a in this.list) {
@@ -107,7 +108,7 @@ export default {
             }
           }
           var c;
-          for (c in name) {          
+          for (c in name) {
             this.options.push({ value: name[c], label: name[c] });
           }
         })
@@ -126,7 +127,7 @@ export default {
             }
           }
           var c;
-          for (c in name) {          
+          for (c in name) {
             this.options1.push({ value: name[c], label: name[c] });
           }
         })
