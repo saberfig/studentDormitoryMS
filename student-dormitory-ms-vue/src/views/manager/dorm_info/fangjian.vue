@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in search(keywords)" :key="item.name">
+          <tr v-for="item in search(keywords)" :key="item.campusName+item.dormName+item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.campusName }}</td>
             <td>{{ item.dormName }}</td>
@@ -51,25 +51,6 @@
             <el-button type="primary" @click="add">确 定</el-button>
           </div>
         </el-dialog>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="reset"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">重置密码成功！</h4>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -229,27 +210,62 @@ export default {
         alert("房间所属位置不可为空")
         return
       }
+
+      this.$axios
+        .post("/manager/add_room", {
+          id: this.addid,//房间id
+          dormId: this.addname,//宿舍楼id
+          dormCampusId:""//校区id
+        })
+        .then(successResponse => {
+          this.get_room_info();
+          this.addname="";
+          this.$message({
+            message:'添加成功',
+            type:'success',
+          });
+        })
+        .catch(failResponse => {
+          this.$message({
+            message:'添加失败，请检查网络是否稳定',
+            type:'error',
+          });
+        });
+
       this.dialogFormVisible = false;
     },
     del(id) {
-      var index = this.list.findIndex(item => {
-        if (item.roomId == id) {
-          return true;
-        }
-      });
-      this.list.splice(index, 1);
+      this.$axios
+        .post("/manager/del_room",{
+          id:id,//房间id
+          dormId:"",//宿舍楼id
+          campusId: "",//校区id
+        })
+        .then(successResponse => {
+          this.get_room_info();
+          this.$message({
+            message:'删除成功',
+            type:'success',
+          });
+        })
+        .catch(failResponse => {
+          this.$message({
+            message:'删除失败，请检查网络是否稳定',
+            type:'error',
+          });
+        });
     },
-    modify() {
-      var index = this.list.findIndex(item => item.roomId == this.roomId);
-      if (index == -1) {
-        alert("无对应的房间");
-      } else {
-        this.list[index].name = this.name;
-        this.list[index].bedNum = this.bedNum;
-        this.list[index].dormName = this.dormName1;
-        this.list[index].campusName = this.campusName1;
-      }
-    },
+    // modify() {
+    //   var index = this.list.findIndex(item => item.roomId == this.roomId);
+    //   if (index == -1) {
+    //     alert("无对应的房间");
+    //   } else {
+    //     this.list[index].name = this.name;
+    //     this.list[index].bedNum = this.bedNum;
+    //     this.list[index].dormName = this.dormName1;
+    //     this.list[index].campusName = this.campusName1;
+    //   }
+    // },
     search(keywords) {
       return this.list.filter(item => {
         var filter0
