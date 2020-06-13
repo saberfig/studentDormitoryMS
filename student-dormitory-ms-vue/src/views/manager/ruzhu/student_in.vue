@@ -6,7 +6,7 @@
           <input
             type="text"
             style="border: #ccc solid 1px;border-radius: 4px;"
-            v-model="searchId"
+            v-model="keywords"
           />
         </label>
         <el-form :inline="true" class="pull-right">
@@ -30,9 +30,9 @@
         <thead>
         <tr>
           <th>校区</th>
-          <th>宿舍楼号</th>
+          <th>宿舍楼</th>
           <th>房间号</th>
-          <th>床位号</th>
+          <th>房间号</th>
           <th>姓名</th>
           <th>学号</th>
           <th>性别</th>
@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="item in search(searchId)" :key="item.id">
+        <tr v-for="item in search(keywords)" :key="item.id">
           <td>{{ getCampusName(item.roomDormCampusId)}}</td>
           <td>{{ getDormName(item.roomDormCampusId,item.roomDormId) }}</td>
           <td>{{ item.roomId }}</td>
@@ -135,7 +135,7 @@
     name: "student_in",
     data() {
       return {
-        searchId: "",
+        keywords: "",
         id: "",
         bed: "",
         room: "",
@@ -240,6 +240,7 @@
       search(keywords) {
         return this.list.filter(item => {
           if (item.id.includes(keywords)){
+            console.log(item.id);
             return item;
           }
         });

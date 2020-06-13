@@ -4,6 +4,7 @@
       <div class="block" style="margin-bottom:20px">
         <span class="demonstration">请选择校区：</span>
         <el-cascader v-model="campusName" :options="options" clearable></el-cascader>
+        <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加宿舍楼</el-button>
       </div>
 
       <table class="table table-bordered table-hover table-striped">
@@ -32,7 +33,6 @@
         </tbody>
       </table>
       <div class="tableTop">
-      <el-button type="primary" class="pull-right" @click="dialogFormVisible = true" >添加宿舍楼</el-button>
       <el-dialog title="添加宿舍楼" :visible.sync="dialogFormVisible">
         <el-form class="dialog">
           <span>宿舍楼名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -105,7 +105,7 @@ export default {
           this.list = successResponse.data;
         })
         .catch(failResponse => {});
-        
+
     },
     get_campus_info() {
       this.$axios

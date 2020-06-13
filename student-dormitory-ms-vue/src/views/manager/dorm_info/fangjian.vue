@@ -4,6 +4,7 @@
       <div class="block" style="margin-bottom:20px">
         <span class="demonstration">请选择所属位置：</span>
         <el-cascader v-model="filter" :options="options" clearable></el-cascader>
+        <el-button type="primary" class="pull-right" @click="dialogFormVisible = true">添加房间</el-button>
       </div>
       <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -31,7 +32,6 @@
         </tbody>
       </table>
       <div class="tableTop">
-        <el-button type="primary" class="pull-right" @click="dialogFormVisible = true">添加房间</el-button>
         <el-dialog title="添加宿舍楼" :visible.sync="dialogFormVisible">
           <el-form class="dialog">
             <span>房间号: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -277,7 +277,7 @@ export default {
         var filter1
         if(typeof(this.filter[0])==='undefined'&&typeof(this.filter[0])==='undefined'){
           filter0=""
-          filter1=""  
+          filter1=""
         }
         else{
           filter0=this.filter[0]
@@ -292,7 +292,7 @@ export default {
       });
     },
   },
-  
+
 };
 </script>
 
