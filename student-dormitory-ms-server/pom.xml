@@ -106,7 +106,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <!--只有5.0-5.1，很难受-->
-            <version>5.1.25</version>
+            <version>8.0.16</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
