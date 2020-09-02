@@ -2,7 +2,7 @@
   <div class="all">
     <div class="box1">
       <div class="box2">
-        <div class="title">大学生宿舍管理系统</div>
+        <div class="title">大学生宿舍管理系统（小学期第二版）</div>
         <el-form :rules="loginFormRules" label-width="100px" class="form" :model="loginForm">
             <el-form-item label="用户类型" prop="region">
               <el-select v-model="loginForm.status" placeholder="请选择用户类型">
