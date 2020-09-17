@@ -4,9 +4,9 @@
     <div><router-link to="/StudentLogin"><h1>学生登录</h1></router-link></div>
     <div><router-link to="/DormManagerLogin"><h1>宿舍管理员登录</h1></router-link></div>
     <div><router-link to="/SuperManagerLogin"><h1>宿管中心登录</h1></router-link></div>
-    <div><router-link to="/nav_student/info"><h1>学生</h1></router-link></div>
-    <div><router-link to="/nav_build/index_build"><h1>宿舍管理员</h1></router-link></div>
-    <div><router-link to="/nav_manager/index"><h1>宿管中心</h1></router-link></div>
+    <div><router-link to="/student"><h1>学生</h1></router-link></div>
+    <div><router-link to="/build"><h1>宿舍管理员</h1></router-link></div>
+    <div><router-link to="/manager"><h1>宿管中心</h1></router-link></div>
   </div>
 </template>
 
